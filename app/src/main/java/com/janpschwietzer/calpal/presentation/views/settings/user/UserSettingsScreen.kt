@@ -59,7 +59,7 @@ fun UserSettingsScreen(
                 .padding(8.dp)
         ) {
             TextField(
-                value = user.name,
+                value = user?.name?: "",
                 onValueChange = { viewModel.updateName(it) },
                 label = { Text(stringResource(R.string.name)) },
                 modifier = Modifier.fillMaxWidth(),
@@ -70,7 +70,7 @@ fun UserSettingsScreen(
             DatePickerView(
                 alternativeTitle = stringResource(R.string.choose_date),
                 context = LocalContext.current,
-                date = user.birthdate
+                date = user?.birthdate
             ) {
                 viewModel.updateBirthdate(it)
             }
@@ -80,7 +80,7 @@ fun UserSettingsScreen(
             DropdownView(
                 title = stringResource(R.string.gender),
                 Gender.entries.map { it.getDisplayedString(context) },
-                selectedOption = user.gender.getDisplayedString(context),
+                selectedOption = user?.gender?.getDisplayedString(context)?: "",
                 onOptionSelected = { selectedString ->
                     val selectedActivityLevel = Gender.entries.find { it.getDisplayedString(context) == selectedString }
                     selectedActivityLevel?.let { viewModel.updateGender(it) }
@@ -94,8 +94,8 @@ fun UserSettingsScreen(
                     .fillMaxWidth(),
             ) {
                 TextField(
-                    value = user.weight.toString(),
-                    onValueChange = { viewModel.updateWeight(it.toIntOrNull() ?: 0) },
+                    value = user?.weight?.toString()?: "",
+                    onValueChange = { viewModel.updateWeight(it.toIntOrNull()) },
                     label = { Text(stringResource(R.string.weight_kg)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier
@@ -105,8 +105,8 @@ fun UserSettingsScreen(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 TextField(
-                    value = user.height.toString(),
-                    onValueChange = { viewModel.updateHeight(it.toIntOrNull() ?: 0) },
+                    value = user?.height?.toString()?: "",
+                    onValueChange = { viewModel.updateHeight(it.toIntOrNull()) },
                     label = { Text(stringResource(R.string.height_cm)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier
@@ -119,7 +119,7 @@ fun UserSettingsScreen(
             DropdownView(
                 title = stringResource(R.string.activitylevel),
                 ActivityLevel.entries.map { it.getDisplayedString(context) },
-                selectedOption = user.activityLevel.getDisplayedString(context),
+                selectedOption = user?.activityLevel?.getDisplayedString(context)?: "",
                 onOptionSelected = { selectedString ->
                     val selectedActivityLevel = ActivityLevel.entries.find { it.getDisplayedString(context) == selectedString }
                     selectedActivityLevel?.let { viewModel.updateActivityLevel(it) }
@@ -132,7 +132,7 @@ fun UserSettingsScreen(
             DropdownView(
                 title = stringResource(R.string.dietgoal),
                 options = DietGoal.entries.map { it.getDisplayedString(context) },
-                selectedOption = user.dietGoal.getDisplayedString(context),
+                selectedOption = user?.dietGoal?.getDisplayedString(context)?: "",
                 onOptionSelected = { selectedString ->
                     val selectedDietGoal = DietGoal.entries.find { it.getDisplayedString(context) == selectedString }
                     selectedDietGoal?.let { viewModel.updateDietGoal(it) }
@@ -146,8 +146,8 @@ fun UserSettingsScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
-                    value = user.kcalGoal.toString(),
-                    onValueChange = { viewModel.updateKcalGoal(it.toIntOrNull() ?: 0) },
+                    value = user?.kcalGoal?.toString()?: "",
+                    onValueChange = { viewModel.updateKcalGoal(it.toIntOrNull()) },
                     label = { Text(stringResource(R.string.daily_kcalgoal)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     enabled = kcalGoalEditable,

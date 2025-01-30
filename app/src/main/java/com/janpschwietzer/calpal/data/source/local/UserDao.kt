@@ -18,14 +18,14 @@ import java.time.LocalDate
 @Entity(tableName = "user")
 data class UserEntity(
     @PrimaryKey val id: Int = 0,
-    val name: String,
-    var birthdate: Long,
-    var height: Int,
-    var weight: Int,
-    var gender: Int,
-    var activityLevel: Int,
-    var dietGoal: Int,
-    var kcalGoal: Int
+    val name: String?,
+    var birthdate: Long?,
+    var height: Int?,
+    var weight: Int?,
+    var gender: Int?,
+    var activityLevel: Int?,
+    var dietGoal: Int?,
+    var kcalGoal: Int?
 )
 
 fun UserEntity.toUserModel(): UserModel {
@@ -34,9 +34,9 @@ fun UserEntity.toUserModel(): UserModel {
         birthdate = LocalDateConverter.toLocalDate(birthdate) ?: LocalDate.now(),
         height = height,
         weight = weight,
-        gender = Gender.fromId(gender),
-        activityLevel = ActivityLevel.fromId(activityLevel),
-        dietGoal = DietGoal.fromId(dietGoal),
+        gender = gender?.let { Gender.fromId(it) },
+        activityLevel = activityLevel?.let { ActivityLevel.fromId(it) },
+        dietGoal = dietGoal?.let { DietGoal.fromId(it) },
         kcalGoal = kcalGoal
     )
 }

@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.janpschwietzer.calpal.presentation.views.add_product.AddProductScreen
+import com.janpschwietzer.calpal.presentation.views.product.add.AddProductScreen
 import com.janpschwietzer.calpal.presentation.views.dashboard.DashboardScreen
 import com.janpschwietzer.calpal.presentation.views.details.DetailsScreen
 import com.janpschwietzer.calpal.presentation.views.overview.OverviewScreen

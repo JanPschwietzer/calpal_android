@@ -20,10 +20,8 @@ class UserSettingsViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _user = MutableStateFlow(
-        UserModel()
-    )
-    val user: StateFlow<UserModel> = _user
+    private val _user = MutableStateFlow(UserModel())
+    val user: StateFlow<UserModel?> = _user
 
     private val _kcalGoalEditable = MutableStateFlow(false)
     val kcalGoalEditable: StateFlow<Boolean> = _kcalGoalEditable
@@ -38,17 +36,17 @@ class UserSettingsViewModel @Inject constructor(
         updateKcalGoal()
     }
 
-    fun updateWeight(weight: Int) {
+    fun updateWeight(weight: Int?) {
         _user.value = _user.value.copy(weight = weight)
         updateKcalGoal()
     }
 
-    fun updateHeight(height: Int) {
+    fun updateHeight(height: Int?) {
         _user.value = _user.value.copy(height = height)
         updateKcalGoal()
     }
 
-    fun updateGender(gender: Gender) {
+    fun updateGender(gender: Gender?) {
         _user.value = _user.value.copy(gender = gender)
         updateKcalGoal()
     }
@@ -68,7 +66,7 @@ class UserSettingsViewModel @Inject constructor(
             _user.value = _user.value.copy(kcalGoal = calculateKcalGoal())
             return
         }
-        _user.value = _user.value.copy(kcalGoal = kcalGoal?: calculateKcalGoal())
+        _user.value = _user.value.copy(kcalGoal = kcalGoal)
     }
 
     fun setKcalGoalEditable(editable: Boolean) {
@@ -80,13 +78,19 @@ class UserSettingsViewModel @Inject constructor(
     }
 
     private fun calculateKcalGoal(): Int {
-        val metabolicRate = if (_user.value.gender == Gender.MALE) {
-            (88.36 + (13.4 * _user.value.weight) + (4.8 * _user.value.height) - (5.7 * LocalDate.now().year.minus(_user.value.birthdate.year))).toInt()
-        } else {
-            (447.6 + (9.2 * _user.value.weight) + (3.1 * _user.value.height) - (4.3 * LocalDate.now().year.minus(_user.value.birthdate.year))).toInt()
+        if (_user.value.weight == null || _user.value.height == null || _user.value.birthdate == null || _user.value.activityLevel == null || _user.value.dietGoal == null) {
+            return 0
         }
 
-        return (metabolicRate * _user.value.activityLevel.factor * _user.value.dietGoal.factor).toInt()
+        val metabolicRate = if (_user.value.gender == Gender.MALE) {
+            (88.36 + (13.4 * _user.value.weight!!) + (4.8 * _user.value.height!!) - (5.7 * LocalDate.now().year.minus(
+                _user.value.birthdate!!.year))).toInt()
+        } else {
+            (447.6 + (9.2 * _user.value.weight!!) + (3.1 * _user.value.height!!) - (4.3 * LocalDate.now().year.minus(
+                _user.value.birthdate!!.year))).toInt()
+        }
+
+        return (metabolicRate * _user.value.activityLevel!!.factor * _user.value.dietGoal!!.factor).toInt()
     }
 
     fun saveUserSettings() {

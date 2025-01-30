@@ -15,7 +15,9 @@ import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.components.ScaffoldView
 
-@OptIn(ExperimentalMaterial3Api::class)
+/*
+    Dieser Screen soll eine Liste von hinzugefügten Produkten zu einer Mahlzeit anzeigen.
+ */
 @Composable
 fun DetailsScreen(
     navController: NavHostController,

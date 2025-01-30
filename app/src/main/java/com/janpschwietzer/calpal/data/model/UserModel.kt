@@ -8,14 +8,14 @@ import com.janpschwietzer.calpal.util.extensions.LocalDateConverter
 import java.time.LocalDate
 
 data class UserModel(
-    var name: String = "Musterperson",
-    var birthdate: LocalDate = LocalDate.now(),
-    var height: Int = 170,
-    var weight: Int = 70,
-    var gender: Gender = Gender.MALE,
-    var activityLevel: ActivityLevel = ActivityLevel.MODERATE,
-    var dietGoal: DietGoal = DietGoal.MAINTAIN,
-    var kcalGoal: Int = 2000
+    val name: String? = null,
+    val birthdate: LocalDate? = null,
+    val height: Int? = null,
+    val weight: Int? = null,
+    val gender: Gender? = null,
+    val activityLevel: ActivityLevel? = null,
+    val dietGoal: DietGoal? = null,
+    val kcalGoal: Int? = null
 )
 
 fun UserModel.toUserEntity(): UserEntity {
@@ -24,9 +24,9 @@ fun UserModel.toUserEntity(): UserEntity {
         birthdate = LocalDateConverter.toTimestamp(birthdate) ?: LocalDate.now().toEpochDay(),
         height = height,
         weight = weight,
-        gender = gender.stringResId,
-        activityLevel = activityLevel.stringResId,
-        dietGoal = dietGoal.stringResId,
+        gender = gender?.stringResId,
+        activityLevel = activityLevel?.stringResId,
+        dietGoal = dietGoal?.stringResId,
         kcalGoal = kcalGoal
     )
 }
