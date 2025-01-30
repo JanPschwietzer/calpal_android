@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titles -->
+    <string name="app_name">CalPal</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="overview_title">Wochenübersicht</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="user_settings_title">Nutzereinstellungen</string>
+    <string name="add_product_title">Produkt hinzufügen</string>
+    <string name="details_title">Details</string>
+
+    <!-- General -->
+    <string name="eaten">gegessen</string>
+    <string name="remaining">übrig</string>
+    <string name="name">Name</string>
+    <string name="weight_kg">Gewicht (kg)</string>
+    <string name="height_cm">Größe (cm)</string>
+    <string name="activitylevel">Aktivitätslevel</string>
+    <string name="dietgoal">Diätziel</string>
+    <string name="daily_kcalgoal">tägliches Kalorienziel</string>
+
+    <!-- Buttons -->
+    <string name="choose_birthday">Geburtstag auswählen</string>
+    <string name="edit_date">Datum ändern</string>
+    <string name="edit">ändern</string>
+    <string name="add_product">Produkt hinzufügen</string>
+    <string name="open_settings">Einstellungen öffnen</string>
+    <string name="go_back">zurück</string>
+    <string name="save">Speichern</string>
+    <string name="user_settings">Nutzereinstellungen</string>
+    <string name="choose_date">Datum wählen</string>
+    <string name="edit_kcal_goal">Kalorienziel anpassen</string>
+
+    <!-- Mealtimes -->
+    <string name="mealtime_breakfast">Frühstück</string>
+    <string name="mealtime_lunch">Mittagessen</string>
+    <string name="mealtime_dinner">Abendessen</string>
+    <string name="mealtime_snacks">Snacks</string>
+
+    <!-- Gender -->
+    <string name="gender">Geschlecht</string>
+    <string name="gender_male">Männlich</string>
+    <string name="gender_female">Weiblich</string>
+
+    <!-- Diet goals -->
+    <string name="dietgoal_loose">Gewicht verlieren</string>
+    <string name="dietgoal_maintain">Gewicht halten</string>
+    <string name="dietgoal_gain">Gewicht zunehmen</string>
+
+    <!-- Activity levels -->
+    <string name="activitylevel_very_low">sehr niedrige Aktivität</string>
+    <string name="activitylevel_low">niedrige Aktivität</string>
+    <string name="activitylevel_moderate">moderate Aktivität</string>
+    <string name="activitylevel_high">hohe Aktivität</string>
+    <string name="activitylevel_very_high">sehr hohe Aktivität</string>
+</resources>

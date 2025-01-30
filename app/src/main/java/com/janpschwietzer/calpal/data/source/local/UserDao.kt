@@ -1,0 +1,56 @@
+package com.janpschwietzer.calpal.data.source.local
+
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Entity
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.PrimaryKey
+import androidx.room.Query
+import androidx.room.RoomDatabase
+import com.janpschwietzer.calpal.data.model.UserModel
+import com.janpschwietzer.calpal.util.enums.ActivityLevel
+import com.janpschwietzer.calpal.util.enums.DietGoal
+import com.janpschwietzer.calpal.util.enums.Gender
+import com.janpschwietzer.calpal.util.extensions.LocalDateConverter
+import java.time.LocalDate
+
+@Entity(tableName = "user")
+data class UserEntity(
+    @PrimaryKey val id: Int = 0,
+    val name: String,
+    var birthdate: Long,
+    var height: Int,
+    var weight: Int,
+    var gender: Int,
+    var activityLevel: Int,
+    var dietGoal: Int,
+    var kcalGoal: Int
+)
+
+fun UserEntity.toUserModel(): UserModel {
+    return UserModel(
+        name = name,
+        birthdate = LocalDateConverter.toLocalDate(birthdate) ?: LocalDate.now(),
+        height = height,
+        weight = weight,
+        gender = Gender.fromId(gender),
+        activityLevel = ActivityLevel.fromId(activityLevel),
+        dietGoal = DietGoal.fromId(dietGoal),
+        kcalGoal = kcalGoal
+    )
+}
+
+@Dao
+interface UserDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUser(user: UserEntity): Long
+
+    @Query("SELECT * FROM user LIMIT 1")
+    fun getUser(): UserEntity?
+}
+
+@Database(entities = [UserEntity::class], version = 1, exportSchema = false)
+abstract class UserDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
+}
