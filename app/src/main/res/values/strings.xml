@@ -32,6 +32,7 @@
     <string name="edit_kcal_goal">edit kcal goal</string>
 
     <!-- Mealtimes -->
+    <string name="mealtime">Meal</string>
     <string name="mealtime_breakfast">Breakfast</string>
     <string name="mealtime_lunch">Lunch</string>
     <string name="mealtime_dinner">Dinner</string>

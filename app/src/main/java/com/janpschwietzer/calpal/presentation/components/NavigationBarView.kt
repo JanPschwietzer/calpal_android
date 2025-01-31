@@ -11,13 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.janpschwietzer.calpal.R
+import com.janpschwietzer.calpal.presentation.navigation.Screen
 
 @Composable
 fun NavigationBarView(navController: NavHostController) {
     NavigationBar {
         NavigationBarItem(
             selected = navController.currentDestination?.route == "dashboard",
-            onClick = { navController.navigate("dashboard") },
+            onClick = { navController.navigate(Screen.Dashboard.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
@@ -28,7 +29,7 @@ fun NavigationBarView(navController: NavHostController) {
         )
         NavigationBarItem(
             selected = navController.currentDestination?.route == "overview",
-            onClick = { navController.navigate("overview") },
+            onClick = { navController.navigate(Screen.Dashboard.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.DateRange,

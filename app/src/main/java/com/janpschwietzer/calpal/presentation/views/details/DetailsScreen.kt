@@ -46,6 +46,6 @@ fun DetailsScreen(
 
 @PreviewLightDark
 @Composable
-fun DetailsScreenPreview() {
+private fun DetailsScreenPreview() {
     DetailsScreen(navController = rememberNavController(), mealTime = MealTime.BREAKFAST)
 }

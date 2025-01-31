@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.hilt.android.v249)
     kapt(libs.hilt.compiler.v248)
     implementation(libs.androidx.hilt.navigation.compose.v100alpha03)
+    implementation(libs.androidx.material.icons.extended)
 
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.junit)

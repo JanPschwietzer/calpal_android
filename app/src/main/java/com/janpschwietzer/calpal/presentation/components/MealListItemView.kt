@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
+import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.MealTime
 import java.net.URLEncoder
@@ -44,7 +45,7 @@ fun MealListItemView(
             .padding(4.dp)
             .background(color = MaterialTheme.colorScheme.surfaceContainer)
             .clickable {
-                navController.navigate("details/${meal.ordinal}")
+                navController.navigate("${Screen.Details.route}?mealTime=${meal.ordinal}")
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -73,7 +74,7 @@ fun MealListItemView(
             IconButton(
                 modifier = Modifier.padding(8.dp),
                 onClick = {
-                    navController.navigate("add-product/${meal.ordinal}")
+                    navController.navigate("${Screen.SearchProduct.route}?mealTime=${meal.ordinal}")
                 }
             ) {
                 Icon(

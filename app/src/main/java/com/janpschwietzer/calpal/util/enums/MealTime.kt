@@ -14,7 +14,7 @@ enum class MealTime(val stringResId: Int) {
     }
 
     companion object {
-        fun fromId(id: Int): MealTime {
+        fun fromId(id: Int?): MealTime {
             return when (id) {
                 BREAKFAST.ordinal -> BREAKFAST
                 LUNCH.ordinal -> LUNCH

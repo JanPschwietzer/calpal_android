@@ -25,6 +25,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.components.NavigationBarView
+import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +58,7 @@ fun SettingsScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = { navController.navigate("settings/user") },
+                onClick = { navController.navigate(Screen.UserSettings.route) },
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()

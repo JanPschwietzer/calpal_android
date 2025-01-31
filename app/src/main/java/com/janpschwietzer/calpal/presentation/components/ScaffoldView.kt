@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
+import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.util.enums.MealTime
 
 
@@ -48,7 +49,7 @@ fun ScaffoldView(
                             )
                         }
                     } else {
-                        IconButton(onClick = { navController.navigate("settings") }) {
+                        IconButton(onClick = { navController.navigate(Screen.Settings.route) }) {
                             Icon(
                                 imageVector = Icons.Default.Settings,
                                 contentDescription = stringResource(R.string.open_settings)
@@ -64,11 +65,7 @@ fun ScaffoldView(
         floatingActionButton = {
             if (showFab) {
                 FloatingActionButton(onClick = {
-                    if (mealTime != null) {
-                        navController.navigate("add-product/$mealTime")
-                    } else {
-                        navController.navigate("add-product/")
-                    }
+                    navController.navigate("${Screen.SearchProduct.route}${if (mealTime != null) "?mealTime=${mealTime.ordinal}" else ""}")
                 }) {
                     Icon(
                         imageVector = Icons.Default.Add,

@@ -32,6 +32,7 @@
     <string name="edit_kcal_goal">Kalorienziel anpassen</string>
 
     <!-- Mealtimes -->
+    <string name="mealtime">Mahlzeit</string>
     <string name="mealtime_breakfast">Frühstück</string>
     <string name="mealtime_lunch">Mittagessen</string>
     <string name="mealtime_dinner">Abendessen</string>
