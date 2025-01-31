@@ -1,4 +1,4 @@
-package com.janpschwietzer.calpal.presentation.components
+package com.janpschwietzer.calpal.presentation.components.button
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,7 +29,7 @@ import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @Composable
-fun DropdownView(
+fun DropdownButton(
     title: String,
     options: List<String>,
     selectedOption: String,
@@ -78,7 +78,7 @@ fun DropdownView(
 @Composable
 private fun DropdownViewPreview() {
     CalPalTheme {
-        DropdownView(
+        DropdownButton(
             title = "Diätziel",
             options = listOf("Abnehmen", "Halten", "Zunehmen"),
             selectedOption = "",

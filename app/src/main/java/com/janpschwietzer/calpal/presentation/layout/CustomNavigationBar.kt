@@ -1,4 +1,4 @@
-package com.janpschwietzer.calpal.presentation.components
+package com.janpschwietzer.calpal.presentation.layout
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -14,7 +14,7 @@ import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.navigation.Screen
 
 @Composable
-fun NavigationBarView(navController: NavHostController) {
+fun CustomNavigationBar(navController: NavHostController) {
     NavigationBar {
         NavigationBarItem(
             selected = navController.currentDestination?.route == "dashboard",

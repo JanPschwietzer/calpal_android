@@ -1,4 +1,4 @@
-package com.janpschwietzer.calpal.presentation.components
+package com.janpschwietzer.calpal.presentation.components.graph
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,7 @@ import com.janpschwietzer.calpal.data.model.ChartModel
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @Composable
-fun PieChartView(
+fun PieChart(
     modifier: Modifier,
     charts: List<ChartModel>,
     size: Dp = 200.dp,
@@ -91,7 +91,7 @@ fun PieChartView(
 @Composable
 private fun PieChartViewPreview() {
     CalPalTheme {
-        PieChartView(
+        PieChart(
             modifier = Modifier.size(200.dp),
             charts = listOf(
                 ChartModel(percentage = 10, value = 200, color = MaterialTheme.colorScheme.primary, description = stringResource(

@@ -1,8 +1,5 @@
 package com.janpschwietzer.calpal.presentation.views.product.search
 
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,12 +30,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
-import com.janpschwietzer.calpal.presentation.components.DropdownView
+import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.presentation.views.barcodescanner.BarcodeScannerScreen
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
-import com.janpschwietzer.calpal.util.enums.Gender
-import com.janpschwietzer.calpal.util.enums.MealTime
 import java.net.URLEncoder
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,24 +53,12 @@ fun SearchProductScreen(
         return
     }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {
-            TopAppBar(
-                title = { Text("Search Product") },
-                actions = {
-                    IconButton(
-                        onClick = { navController.popBackStack() }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(R.string.go_back)
-                        )
-                    }
-                }
-            )
-        }
-
+    CustomScaffold(
+        title = stringResource(R.string.add_product_title),
+        showCloseButton = true,
+        showFab = false,
+        showBottomBar = false,
+        navController = navController
     ) { paddingValues ->
         Column(
             modifier = Modifier.padding(paddingValues)

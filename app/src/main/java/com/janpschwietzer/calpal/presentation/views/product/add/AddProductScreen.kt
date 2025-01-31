@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
+import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.MealTime
 
@@ -29,22 +30,11 @@ fun AddProductScreen(
     navController: NavHostController,
     barcode: String?
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.add_product_title)) },
-                actions = {
-                    IconButton(
-                        onClick = { navController.popBackStack() }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(R.string.go_back)
-                        )
-                    }
-                }
-            )
-        }
+    CustomScaffold(
+        title = stringResource(R.string.add_product_title),
+        showCloseButton = true,
+        showBottomBar = false,
+        navController = navController,
     ) { paddingValues ->
         Column(
             modifier = Modifier

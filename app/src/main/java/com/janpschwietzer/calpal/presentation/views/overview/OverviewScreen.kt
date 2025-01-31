@@ -11,12 +11,12 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.janpschwietzer.calpal.presentation.components.ScaffoldView
+import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @Composable
 fun OverviewScreen(navController: NavHostController) {
-    ScaffoldView(
+    CustomScaffold(
         navController = navController
     ) { paddingValues ->
         Column(

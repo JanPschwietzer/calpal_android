@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
-import com.janpschwietzer.calpal.presentation.components.ScaffoldView
+import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.util.enums.MealTime
 
 /*
@@ -27,11 +27,10 @@ fun DetailsScreen(
         navController.popBackStack()
     }
 
-    ScaffoldView(
+    CustomScaffold(
         title = stringResource(R.string.details_title),
         showCloseButton = true,
-        navController = navController,
-        mealTime = mealTime
+        navController = navController
     ) { paddingValues ->
         Column(
             modifier = Modifier

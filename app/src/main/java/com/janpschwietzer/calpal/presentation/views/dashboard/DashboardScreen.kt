@@ -10,7 +10,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -18,9 +17,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.data.model.ChartModel
-import com.janpschwietzer.calpal.presentation.components.MealListItemView
-import com.janpschwietzer.calpal.presentation.components.ScaffoldView
-import com.janpschwietzer.calpal.presentation.components.PieChartView
+import com.janpschwietzer.calpal.presentation.components.listitem.MealListItem
+import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
+import com.janpschwietzer.calpal.presentation.components.graph.PieChart
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.MealTime
 
@@ -29,7 +28,7 @@ fun DashboardScreen(navController: NavHostController) {
 
     val scrollState = rememberScrollState()
 
-    ScaffoldView(
+    CustomScaffold(
         navController = navController
     ) { paddingValues ->
         Column(
@@ -40,7 +39,7 @@ fun DashboardScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            PieChartView(
+            PieChart(
                 modifier = Modifier
                     .padding(32.dp),
                 charts = listOf(
@@ -52,7 +51,7 @@ fun DashboardScreen(navController: NavHostController) {
 
             Column {
                 for (value in MealTime.entries.map { it }) {
-                    MealListItemView(
+                    MealListItem(
                         navController = navController,
                         meal = value,
                         caloriesEaten = 0,

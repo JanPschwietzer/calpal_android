@@ -24,32 +24,19 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
-import com.janpschwietzer.calpal.presentation.components.NavigationBarView
+import com.janpschwietzer.calpal.presentation.layout.CustomNavigationBar
+import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(navController: NavHostController) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.settings_title)) },
-                actions = {
-                    IconButton(
-                        onClick = { navController.popBackStack() }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(R.string.go_back)
-                        )
-                    }
-                }
-            )
-        },
-        bottomBar = {
-            NavigationBarView(navController = navController)
-        }
+    CustomScaffold(
+        title = stringResource(R.string.settings_title),
+        showFab = false,
+        showCloseButton = true,
+        navController = navController
     ) { paddingValues ->
         Column(
             modifier = Modifier
