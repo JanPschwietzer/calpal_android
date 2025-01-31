@@ -51,7 +51,7 @@ fun DashboardScreen(navController: NavHostController) {
             )
 
             Column {
-                for (value in MealTime.entries.map { it.getDisplayedString(LocalContext.current) }) {
+                for (value in MealTime.entries.map { it }) {
                     MealListItemView(
                         navController = navController,
                         meal = value,

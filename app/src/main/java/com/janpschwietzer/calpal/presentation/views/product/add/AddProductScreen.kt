@@ -14,19 +14,20 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
-import java.net.URLDecoder
+import com.janpschwietzer.calpal.util.enums.MealTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddProductScreen(
     navController: NavHostController,
-    mealType: String? = null
+    mealTime: MealTime?
 ) {
     Scaffold(
         topBar = {
@@ -51,10 +52,13 @@ fun AddProductScreen(
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(URLDecoder.decode(
-                mealType ?: "",
-                "UTF-8"
-            ))
+            if (mealTime != null) {
+                Text(
+                    MealTime.fromId(mealTime.ordinal).getDisplayedString(
+                        context = LocalContext.current
+                    )
+                )
+            }
         }
     }
 }
@@ -63,6 +67,9 @@ fun AddProductScreen(
 @Composable
 private fun AddProductScreenPreview() {
     CalPalTheme {
-        AddProductScreen(navController = rememberNavController())
+        AddProductScreen(
+            navController = rememberNavController(),
+            mealTime = MealTime.BREAKFAST
+        )
     }
 }

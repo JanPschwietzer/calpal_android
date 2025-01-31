@@ -1,5 +1,6 @@
 package com.janpschwietzer.calpal.presentation.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,12 +27,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
+import com.janpschwietzer.calpal.util.enums.MealTime
 import java.net.URLEncoder
 
 @Composable
 fun MealListItemView(
     navController: NavHostController,
-    meal: String,
+    meal: MealTime,
     caloriesEaten: Int,
     caloriesGoal: Int,
     modifier: Modifier = Modifier
@@ -42,7 +44,7 @@ fun MealListItemView(
             .padding(4.dp)
             .background(color = MaterialTheme.colorScheme.surfaceContainer)
             .clickable {
-                navController.navigate("details/${URLEncoder.encode(meal, "UTF-8")}")
+                navController.navigate("details/${meal.ordinal}")
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -60,7 +62,9 @@ fun MealListItemView(
 
             Column(verticalArrangement = Arrangement.Center) {
                 Text(
-                    meal,
+                    meal.getDisplayedString(
+                        context = navController.context
+                    ),
                     fontWeight = FontWeight.SemiBold
                 )
                 Text("${caloriesEaten} / ${caloriesGoal} kcal")
@@ -69,7 +73,7 @@ fun MealListItemView(
             IconButton(
                 modifier = Modifier.padding(8.dp),
                 onClick = {
-                    navController.navigate("add-product/${URLEncoder.encode(meal, "UTF-8")}")
+                    navController.navigate("add-product/${meal.ordinal}")
                 }
             ) {
                 Icon(
@@ -86,7 +90,7 @@ private fun MealListItemViewPreview() {
     CalPalTheme {
         MealListItemView(
             navController = rememberNavController(),
-            meal = "Breakfast",
+            meal = MealTime.BREAKFAST,
             caloriesEaten = 0,
             caloriesGoal = 630
         )

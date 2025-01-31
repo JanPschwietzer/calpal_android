@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
+import com.janpschwietzer.calpal.util.enums.MealTime
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,7 +30,7 @@ fun ScaffoldView(
     showCloseButton: Boolean = false,
     showFab: Boolean = true,
     navController: NavHostController,
-    mealType: String = "",
+    mealTime: MealTime? = null,
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
@@ -63,8 +64,8 @@ fun ScaffoldView(
         floatingActionButton = {
             if (showFab) {
                 FloatingActionButton(onClick = {
-                    if (mealType.isNotEmpty()) {
-                        navController.navigate("add-product/$mealType")
+                    if (mealTime != null) {
+                        navController.navigate("add-product/$mealTime")
                     } else {
                         navController.navigate("add-product/")
                     }

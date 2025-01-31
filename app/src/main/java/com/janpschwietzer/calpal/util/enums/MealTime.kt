@@ -16,10 +16,10 @@ enum class MealTime(val stringResId: Int) {
     companion object {
         fun fromId(id: Int): MealTime {
             return when (id) {
-                BREAKFAST.stringResId -> BREAKFAST
-                LUNCH.stringResId -> LUNCH
-                DINNER.stringResId -> DINNER
-                SNACK.stringResId -> SNACK
+                BREAKFAST.ordinal -> BREAKFAST
+                LUNCH.ordinal -> LUNCH
+                DINNER.ordinal -> DINNER
+                SNACK.ordinal -> SNACK
                 else -> BREAKFAST
             }
         }
