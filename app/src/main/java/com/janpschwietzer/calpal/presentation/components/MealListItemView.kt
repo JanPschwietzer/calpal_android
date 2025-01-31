@@ -45,7 +45,7 @@ fun MealListItemView(
             .padding(4.dp)
             .background(color = MaterialTheme.colorScheme.surfaceContainer)
             .clickable {
-                navController.navigate("${Screen.Details.route}?mealTime=${meal.ordinal}")
+                navController.navigate(Screen.Details.createRoute(meal.ordinal.toString())) { launchSingleTop = true }
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -74,7 +74,7 @@ fun MealListItemView(
             IconButton(
                 modifier = Modifier.padding(8.dp),
                 onClick = {
-                    navController.navigate("${Screen.SearchProduct.route}?mealTime=${meal.ordinal}")
+                    navController.navigate(Screen.SearchProduct.route) { launchSingleTop = true }
                 }
             ) {
                 Icon(

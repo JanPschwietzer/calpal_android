@@ -18,7 +18,7 @@ fun NavigationBarView(navController: NavHostController) {
     NavigationBar {
         NavigationBarItem(
             selected = navController.currentDestination?.route == "dashboard",
-            onClick = { navController.navigate(Screen.Dashboard.route) },
+            onClick = { navController.navigate(Screen.Dashboard.route) { launchSingleTop = true } },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
@@ -29,7 +29,7 @@ fun NavigationBarView(navController: NavHostController) {
         )
         NavigationBarItem(
             selected = navController.currentDestination?.route == "overview",
-            onClick = { navController.navigate(Screen.Dashboard.route) },
+            onClick = { navController.navigate(Screen.Overview.route) { launchSingleTop = true } },
             icon = {
                 Icon(
                     imageVector = Icons.Default.DateRange,

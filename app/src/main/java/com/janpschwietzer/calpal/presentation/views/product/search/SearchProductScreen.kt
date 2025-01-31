@@ -1,6 +1,8 @@
 package com.janpschwietzer.calpal.presentation.views.product.search
 
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,17 +34,29 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.components.DropdownView
+import com.janpschwietzer.calpal.presentation.navigation.Screen
+import com.janpschwietzer.calpal.presentation.views.barcodescanner.BarcodeScannerScreen
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.Gender
 import com.janpschwietzer.calpal.util.enums.MealTime
+import java.net.URLEncoder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchProductScreen(
-    navController: NavHostController = rememberNavController(),
-    mealTime: MealTime? = null
+    navController: NavHostController = rememberNavController()
 ) {
+    var showScanner by remember { mutableStateOf(false) }
     var textFieldValue by remember { mutableStateOf("") }
+
+    if (showScanner) {
+        BarcodeScannerScreen(
+            navController = navController
+        ) { barcode ->
+            navController.navigate(Screen.AddProduct.createRoute(URLEncoder.encode(barcode, "UTF-8"))) { launchSingleTop = true }
+        }
+        return
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -77,8 +91,8 @@ fun SearchProductScreen(
                 ),
                 keyboardActions = KeyboardActions(
                         onSearch = {
-                            //TODO: implement search for text via ViewModel
-                            Log.d("ProductSearchScreen", "search for text")
+                            //TODO: In viewModel auslagern
+                            navController.navigate(Screen.AddProduct.createRoute(textFieldValue)){ launchSingleTop = true }
                         }
                     ),
                 modifier = Modifier
@@ -87,8 +101,7 @@ fun SearchProductScreen(
                     if (textFieldValue.isEmpty()) {
                         IconButton(
                             onClick = {
-                                //TODO: implement camera scan for barcode screen via ViewModel
-                                Log.d("ProductSearchScreen", "scan barcode")
+                                showScanner = true
                             }
                         ) {
                             Icon(
@@ -99,8 +112,7 @@ fun SearchProductScreen(
                     } else {
                         IconButton(
                             onClick = {
-                                //TODO: implement search for text via ViewModel
-                                Log.d("ProductSearchScreen", "search for text")
+                                navController.navigate(Screen.AddProduct.createRoute(textFieldValue)){ launchSingleTop = true }
                             }
                         ) {
                             Icon(
