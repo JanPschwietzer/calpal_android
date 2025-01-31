@@ -54,9 +54,8 @@ fun BarcodeScannerScreen(
     navController: NavHostController,
     onBarcodeScanned: (String) -> Unit
 ) {
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    val previewView = remember { PreviewView(context) }
+    val previewView = remember { PreviewView(navController.context) }
     val cameraExecutor = remember { Executors.newSingleThreadExecutor() }
 
     Box(
@@ -71,7 +70,7 @@ fun BarcodeScannerScreen(
             modifier = Modifier.fillMaxSize(),
             factory = { previewView }
         ) { view ->
-            val cameraProviderFuture = ProcessCameraProvider.getInstance(context)
+            val cameraProviderFuture = ProcessCameraProvider.getInstance(navController.context)
 
             cameraProviderFuture.addListener({
                 val cameraProvider = cameraProviderFuture.get()
@@ -109,7 +108,7 @@ fun BarcodeScannerScreen(
                 cameraProvider.bindToLifecycle(
                     lifecycleOwner, cameraSelector, preview, imageAnalyzer
                 )
-            }, ContextCompat.getMainExecutor(context))
+            }, ContextCompat.getMainExecutor(navController.context))
         }
 
         Canvas(modifier = Modifier.fillMaxSize()) {
