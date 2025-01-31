@@ -1,6 +1,5 @@
 package com.janpschwietzer.calpal.presentation.views.barcodescanner
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -45,7 +44,6 @@ fun BarcodeScannerScreen(
 
 }
 
-@SuppressLint("UnrememberedMutableState")
 @PreviewLightDark
 @Composable
 private fun BarcodeScannerScreenPreview() {

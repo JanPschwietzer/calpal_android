@@ -1,6 +1,5 @@
 package com.janpschwietzer.calpal.data.repository
 
-import androidx.room.Query
 import com.janpschwietzer.calpal.data.model.ProductModel
 import com.janpschwietzer.calpal.data.model.toProductEntity
 import com.janpschwietzer.calpal.data.model.toProductModel

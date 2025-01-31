@@ -8,7 +8,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -32,7 +31,6 @@ import com.janpschwietzer.calpal.presentation.views.barcodescanner.BarcodeScanne
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import java.net.URLEncoder
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchProductScreen(
     navController: NavHostController = rememberNavController()

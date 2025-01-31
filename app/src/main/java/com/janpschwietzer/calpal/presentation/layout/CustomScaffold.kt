@@ -24,8 +24,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.navigation.Screen
-import com.janpschwietzer.calpal.ui.theme.calpalBlue
-import com.janpschwietzer.calpal.ui.theme.onCalpalBlue
 
 
 @OptIn(ExperimentalMaterial3Api::class)

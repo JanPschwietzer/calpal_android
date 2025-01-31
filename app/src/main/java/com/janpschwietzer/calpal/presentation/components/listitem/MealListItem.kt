@@ -66,7 +66,7 @@ fun MealListItem(
                     ),
                     fontWeight = FontWeight.SemiBold
                 )
-                Text("${caloriesEaten} / ${caloriesGoal} kcal")
+                Text("$caloriesEaten / $caloriesGoal kcal")
             }
         }
             IconButton(
