@@ -15,7 +15,7 @@ import androidx.room.RoomDatabase
 
 @Entity(tableName = "product")
 data class ProductEntity(
-    @PrimaryKey(autoGenerate = true) val barcode: Int,
+    @PrimaryKey(autoGenerate = true) val barcode: Long,
     val name: String?,
     val brand: String?,
     val kcal: Int?,
@@ -62,7 +62,7 @@ interface ProductDao {
     fun insertProduct(product: ProductEntity): Long
 
     @Query("SELECT * FROM product WHERE barcode = :barcode")
-    fun getProduct(barcode: Int): ProductEntity?
+    fun getProduct(barcode: Long): ProductEntity?
 
     @Query("SELECT * FROM product")
     fun getAllProducts(): List<ProductEntity>
@@ -77,13 +77,13 @@ interface ProductDao {
     fun getMostAddedProducts(): List<ProductEntity>
 
     @Query("UPDATE product SET isFavorite = :isFavorite WHERE barcode = :barcode")
-    fun updateFavorite(barcode: Int, isFavorite: Boolean)
+    fun updateFavorite(barcode: Long, isFavorite: Boolean)
 
     @Query("UPDATE product SET timesAdded = timesAdded + 1 WHERE barcode = :barcode")
-    fun incrementTimesAdded(barcode: Int)
+    fun incrementTimesAdded(barcode: Long)
 
     @Query("DELETE FROM product WHERE barcode = :barcode")
-    fun deleteProduct(barcode: Int)
+    fun deleteProduct(barcode: Long)
 }
 
 @Database(entities = [ProductEntity::class], version = 1, exportSchema = false)

@@ -66,10 +66,15 @@ dependencies {
     kapt(libs.hilt.compiler.v248)
     implementation(libs.androidx.hilt.navigation.compose.v100alpha03)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.androidx.espresso.core.v340)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.core.testing)
     androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.core.testing.v210)
 }

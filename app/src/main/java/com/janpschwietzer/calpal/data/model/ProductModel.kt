@@ -5,7 +5,7 @@ import com.janpschwietzer.calpal.util.enums.GreenScore
 import com.janpschwietzer.calpal.util.enums.NutriScore
 
 data class ProductModel(
-    val barcode: Int,
+    val barcode: Long,
     val name: String?,
     val brand: String?,
     val kcal: Int?,
