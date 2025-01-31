@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,22 +26,32 @@ fun WeightHeightInput(
     Row(
         modifier = Modifier.fillMaxWidth(),
     ) {
-        TextField(
+        OutlinedTextField(
             value = weight?.toString() ?: "",
             onValueChange = { onWeightChange(it.toIntOrNull()) },
             label = { Text(stringResource(R.string.weight_kg)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            singleLine = true,
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                focusedTextColor = MaterialTheme.colorScheme.onBackground,
+            )
         )
 
         Spacer(modifier = Modifier.width(8.dp))
 
-        TextField(
+        OutlinedTextField(
             value = height?.toString() ?: "",
             onValueChange = { onHeightChange(it.toIntOrNull()) },
             label = { Text(stringResource(R.string.height_cm)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            singleLine = true,
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                focusedTextColor = MaterialTheme.colorScheme.onBackground,
+            )
         )
     }
 }

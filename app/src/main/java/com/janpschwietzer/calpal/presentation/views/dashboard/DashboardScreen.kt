@@ -40,11 +40,10 @@ fun DashboardScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             PieChart(
-                modifier = Modifier
-                    .padding(32.dp),
+                modifier = Modifier.padding(40.dp),
                 charts = listOf(
                     ChartModel(percentage = 10, value = 200, color = MaterialTheme.colorScheme.primary, description = stringResource(R.string.eaten)),
-                    ChartModel(percentage = 90, value = 1800, color = MaterialTheme.colorScheme.primaryContainer, description = stringResource(R.string.remaining))
+                    ChartModel(percentage = 90, value = 1800, color = MaterialTheme.colorScheme.secondary, description = stringResource(R.string.remaining))
                 ),
                 size = 300.dp
             )

@@ -3,6 +3,7 @@ package com.janpschwietzer.calpal.presentation.components.camera
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,8 +20,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CameraOverlay() {
+    val darkThemeEnabled = isSystemInDarkTheme()
+
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val overlayColor = Color.White.copy(alpha = 0.7f)
+        val overlayColor = if (darkThemeEnabled) Color.Black.copy(alpha = 0.7f) else Color.White.copy(alpha = 0.7f)
         val scannerRect = Rect(
             center.x - 300f,
             center.y - 150f,
@@ -37,7 +40,7 @@ fun CameraOverlay() {
         }
 
         drawRect(
-            color = Color.White,
+            color = if (darkThemeEnabled) Color.Black else Color.White,
             style = Stroke(width = 4.dp.toPx()),
             topLeft = Offset(scannerRect.left, scannerRect.top),
             size = Size(scannerRect.width, scannerRect.height)

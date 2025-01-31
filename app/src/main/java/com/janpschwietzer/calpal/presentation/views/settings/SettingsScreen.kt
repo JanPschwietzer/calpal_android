@@ -1,6 +1,7 @@
 package com.janpschwietzer.calpal.presentation.views.settings
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,6 +45,8 @@ fun SettingsScreen(navController: NavHostController) {
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
+
             Button(
                 onClick = { navController.navigate(Screen.UserSettings.route) { launchSingleTop = true } },
                 modifier = Modifier

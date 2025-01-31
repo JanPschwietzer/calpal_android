@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -28,15 +31,27 @@ fun KcalGoalInput(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextField(
+        OutlinedTextField(
             value = kcalGoal?.toString() ?: "",
             onValueChange = { onKcalGoalChange(it.toIntOrNull()) },
             label = { Text(stringResource(R.string.daily_kcalgoal)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             enabled = isEditable,
             modifier = Modifier.weight(1f),
+            singleLine = true,
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                disabledBorderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                disabledTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                disabledPlaceholderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                disabledLabelColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                focusedBorderColor = MaterialTheme.colorScheme.primary
+            )
         )
+
         Spacer(modifier = Modifier.width(8.dp))
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier

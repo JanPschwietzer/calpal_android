@@ -48,7 +48,10 @@ fun UserSettingsScreen(
                 .padding(paddingValues)
                 .padding(8.dp)
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
+
             NameInputField(user?.name, viewModel::updateName)
+
             Spacer(modifier = Modifier.height(8.dp))
 
             DatePickerButton(
@@ -56,6 +59,7 @@ fun UserSettingsScreen(
                 selectedDate = user?.birthdate,
                 onDateSelected = viewModel::updateBirthdate
             )
+
             Spacer(modifier = Modifier.height(8.dp))
 
             GenderDropdown(
@@ -67,6 +71,7 @@ fun UserSettingsScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             WeightHeightInput(user?.weight, user?.height, viewModel::updateWeight, viewModel::updateHeight)
+
             Spacer(modifier = Modifier.height(8.dp))
 
             ActivityLevelDropdown(
@@ -86,6 +91,7 @@ fun UserSettingsScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             KcalGoalInput(user?.kcalGoal, kcalGoalEditable, viewModel::updateKcalGoal, viewModel::setKcalGoalEditable)
+
             Spacer(modifier = Modifier.height(16.dp))
 
             SaveButton { viewModel.saveUserSettings() }

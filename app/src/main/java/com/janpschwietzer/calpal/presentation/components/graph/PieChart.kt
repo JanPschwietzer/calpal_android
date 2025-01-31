@@ -25,7 +25,7 @@ import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @Composable
 fun PieChart(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     charts: List<ChartModel>,
     size: Dp = 200.dp,
     strokeWidth: Dp = 50.dp
@@ -98,7 +98,7 @@ private fun PieChartViewPreview() {
                     R.string.eaten
                 )
                 ),
-                ChartModel(percentage = 90, value = 1800, color = MaterialTheme.colorScheme.primaryContainer, description = stringResource(
+                ChartModel(percentage = 90, value = 1800, color = MaterialTheme.colorScheme.secondary, description = stringResource(
                     R.string.remaining
                 )
                 ),

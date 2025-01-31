@@ -1,6 +1,7 @@
 package com.janpschwietzer.calpal.presentation.components.button
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -40,7 +41,11 @@ fun DatePickerButton(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { showDialog = true }
-            .background(TextFieldDefaults.colors().unfocusedContainerColor)
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outline,
+                shape = MaterialTheme.shapes.extraSmall
+            )
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
