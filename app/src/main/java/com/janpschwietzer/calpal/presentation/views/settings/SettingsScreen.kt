@@ -58,7 +58,7 @@ fun SettingsScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = { navController.navigate(Screen.UserSettings.route) },
+                onClick = { navController.navigate(Screen.UserSettings.route) { launchSingleTop = true } },
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()

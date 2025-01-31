@@ -16,7 +16,7 @@ import com.google.common.truth.Truth.assertThat
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-class AppDatabaseTest {
+class ProductDaoTest {
 
     private lateinit var database: AppDatabase
     private lateinit var productDao: ProductDao

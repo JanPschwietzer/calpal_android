@@ -49,7 +49,7 @@ fun ScaffoldView(
                             )
                         }
                     } else {
-                        IconButton(onClick = { navController.navigate(Screen.Settings.route) }) {
+                        IconButton(onClick = { navController.navigate(Screen.Settings.route) { launchSingleTop = true } }) {
                             Icon(
                                 imageVector = Icons.Default.Settings,
                                 contentDescription = stringResource(R.string.open_settings)
@@ -65,7 +65,7 @@ fun ScaffoldView(
         floatingActionButton = {
             if (showFab) {
                 FloatingActionButton(onClick = {
-                    navController.navigate("${Screen.SearchProduct.route}${if (mealTime != null) "?mealTime=${mealTime.ordinal}" else ""}")
+                    navController.navigate(Screen.SearchProduct.route) { launchSingleTop = true }
                 }) {
                     Icon(
                         imageVector = Icons.Default.Add,

@@ -27,7 +27,7 @@ import com.janpschwietzer.calpal.util.enums.MealTime
 @Composable
 fun AddProductScreen(
     navController: NavHostController,
-    mealTime: MealTime?
+    barcode: String?
 ) {
     Scaffold(
         topBar = {
@@ -52,12 +52,8 @@ fun AddProductScreen(
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (mealTime != null) {
-                Text(
-                    MealTime.fromId(mealTime.ordinal).getDisplayedString(
-                        context = LocalContext.current
-                    )
-                )
+            if (barcode != null) {
+                Text(barcode)
             }
         }
     }
@@ -69,7 +65,7 @@ private fun AddProductScreenPreview() {
     CalPalTheme {
         AddProductScreen(
             navController = rememberNavController(),
-            mealTime = MealTime.BREAKFAST
+            barcode = "123456789"
         )
     }
 }
