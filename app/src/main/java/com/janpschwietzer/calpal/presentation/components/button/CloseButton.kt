@@ -18,7 +18,8 @@ import com.janpschwietzer.calpal.R
 
 @Composable
 fun CloseButton(
-    navController: NavHostController
+    navController: NavHostController,
+    onClick: () -> Unit = { navController.popBackStack() }
 ) {
     Box(
         modifier = Modifier
@@ -27,7 +28,7 @@ fun CloseButton(
         contentAlignment = Alignment.TopEnd
     ) {
         IconButton(
-            onClick = { navController.popBackStack() }
+            onClick = onClick
         ) {
             Icon(
                 Icons.Default.Close,

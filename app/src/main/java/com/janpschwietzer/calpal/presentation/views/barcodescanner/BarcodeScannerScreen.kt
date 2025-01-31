@@ -1,5 +1,6 @@
 package com.janpschwietzer.calpal.presentation.views.barcodescanner
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -19,7 +20,8 @@ import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 @Composable
 fun BarcodeScannerScreen(
     navController: NavHostController,
-    onBarcodeScanned: (String) -> Unit
+    onBarcodeScanned: (String) -> Unit,
+    onCloseClicked: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -36,20 +38,22 @@ fun BarcodeScannerScreen(
 
         CameraOverlay()
 
-        CloseButton(navController)
+        CloseButton(navController, onCloseClicked)
     }
 
 
 
 }
 
+@SuppressLint("UnrememberedMutableState")
 @PreviewLightDark
 @Composable
 private fun BarcodeScannerScreenPreview() {
     CalPalTheme {
         BarcodeScannerScreen(
             rememberNavController(),
-            onBarcodeScanned = {}
+            onBarcodeScanned = {},
+            onCloseClicked = {}
         )
     }
 }
