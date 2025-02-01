@@ -1,15 +1,12 @@
 package com.janpschwietzer.calpal.di
 
 import android.app.Application
-import android.content.Context
-import androidx.room.Room
 import com.janpschwietzer.calpal.data.repository.ProductRepository
 import com.janpschwietzer.calpal.data.repository.ProductRepositoryImpl
 import com.janpschwietzer.calpal.data.repository.UserRepository
 import com.janpschwietzer.calpal.data.repository.UserRepositoryImpl
 import com.janpschwietzer.calpal.data.source.local.AppDatabase
 import com.janpschwietzer.calpal.data.source.local.ProductDao
-import com.janpschwietzer.calpal.data.source.local.ProductDatabase
 import com.janpschwietzer.calpal.data.source.local.UserDao
 import com.janpschwietzer.calpal.data.source.remote.ProductApiService
 import com.janpschwietzer.calpal.data.source.remote.RetrofitClient
@@ -41,17 +38,6 @@ object AppModule {
         return UserRepositoryImpl(userDao)
     }
 
-    // Product Database und API Service bereitstellen
-    @Provides
-    @Singleton
-    fun provideProductDatabase(context: Context): ProductDatabase {
-        return Room.databaseBuilder(
-            context,
-            ProductDatabase::class.java,
-            "product_db"
-        ).build()
-    }
-
     @Provides
     @Singleton
     fun provideProductApiService(): ProductApiService {
@@ -59,8 +45,9 @@ object AppModule {
     }
 
     @Provides
-    fun provideProductDao(productDatabase: ProductDatabase): ProductDao {
-        return productDatabase.productDao()
+    @Singleton
+    fun provideProductDao(appDatabase: AppDatabase): ProductDao {
+        return appDatabase.productDao()
     }
 
     @Provides

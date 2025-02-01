@@ -85,8 +85,3 @@ interface ProductDao {
     @Query("DELETE FROM product WHERE barcode = :barcode")
     fun deleteProduct(barcode: Long)
 }
-
-@Database(entities = [ProductEntity::class], version = 1, exportSchema = false)
-abstract class ProductDatabase : RoomDatabase() {
-    abstract fun productDao(): ProductDao
-}

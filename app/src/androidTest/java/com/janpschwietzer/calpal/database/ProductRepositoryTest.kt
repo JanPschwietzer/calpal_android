@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.janpschwietzer.calpal.data.repository.ProductRepositoryImpl
+import com.janpschwietzer.calpal.data.source.local.AppDatabase
 import com.janpschwietzer.calpal.data.source.local.ProductDao
-import com.janpschwietzer.calpal.data.source.local.ProductDatabase
 import com.janpschwietzer.calpal.data.source.local.ProductEntity
 import com.janpschwietzer.calpal.data.source.remote.ProductApiService
 import com.janpschwietzer.calpal.data.source.remote.RetrofitClient
@@ -19,7 +19,7 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class ProductRepositoryTest {
 
-    private lateinit var database: ProductDatabase
+    private lateinit var database: AppDatabase
     private lateinit var productDao: ProductDao
     private lateinit var apiService: ProductApiService
     private lateinit var productRepository: ProductRepositoryImpl
@@ -28,7 +28,7 @@ class ProductRepositoryTest {
     fun setup() {
         // Create in-memory database
         val context = ApplicationProvider.getApplicationContext<Context>()
-        database = Room.inMemoryDatabaseBuilder(context, ProductDatabase::class.java)
+        database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             .allowMainThreadQueries()
             .build()
 

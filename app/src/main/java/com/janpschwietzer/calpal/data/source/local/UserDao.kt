@@ -49,8 +49,3 @@ interface UserDao {
     @Query("SELECT * FROM user LIMIT 1")
     fun getUser(): UserEntity?
 }
-
-@Database(entities = [UserEntity::class], version = 1, exportSchema = false)
-abstract class UserDatabase : RoomDatabase() {
-    abstract fun userDao(): UserDao
-}
