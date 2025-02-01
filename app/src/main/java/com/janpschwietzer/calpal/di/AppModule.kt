@@ -1,11 +1,14 @@
 package com.janpschwietzer.calpal.di
 
 import android.app.Application
+import com.janpschwietzer.calpal.data.repository.EatenProductRepository
+import com.janpschwietzer.calpal.data.repository.EatenProductRepositoryImpl
 import com.janpschwietzer.calpal.data.repository.ProductRepository
 import com.janpschwietzer.calpal.data.repository.ProductRepositoryImpl
 import com.janpschwietzer.calpal.data.repository.UserRepository
 import com.janpschwietzer.calpal.data.repository.UserRepositoryImpl
 import com.janpschwietzer.calpal.data.source.local.AppDatabase
+import com.janpschwietzer.calpal.data.source.local.EatenProductDao
 import com.janpschwietzer.calpal.data.source.local.ProductDao
 import com.janpschwietzer.calpal.data.source.local.UserDao
 import com.janpschwietzer.calpal.data.source.remote.ProductApiService
@@ -34,8 +37,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDao: UserDao): UserRepository {
-        return UserRepositoryImpl(userDao)
+    fun provideProductDao(appDatabase: AppDatabase): ProductDao {
+        return appDatabase.productDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideEatenProductDao(appDatabase: AppDatabase): EatenProductDao {
+        return appDatabase.eatenProductDao()
     }
 
     @Provides
@@ -46,8 +55,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductDao(appDatabase: AppDatabase): ProductDao {
-        return appDatabase.productDao()
+    fun provideUserRepository(userDao: UserDao): UserRepository {
+        return UserRepositoryImpl(userDao)
     }
 
     @Provides
@@ -57,5 +66,11 @@ object AppModule {
         productApiService: ProductApiService
     ): ProductRepository {
         return ProductRepositoryImpl(productDao, productApiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEatenProductRepository(eatenProductDao: EatenProductDao): EatenProductRepository {
+        return EatenProductRepositoryImpl(eatenProductDao)
     }
 }

@@ -10,7 +10,9 @@ import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -65,6 +67,10 @@ fun SearchProductScreen(
                 value = textFieldValue,
                 onValueChange = { textFieldValue = it },
                 singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                    focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                ),
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Search
                 ),

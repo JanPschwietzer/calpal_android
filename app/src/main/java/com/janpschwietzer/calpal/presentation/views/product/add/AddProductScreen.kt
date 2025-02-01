@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
@@ -20,6 +22,12 @@ fun AddProductScreen(
     navController: NavHostController,
     barcode: String?
 ) {
+
+    val viewModel: UserSettingsViewModel = hiltViewModel()
+    LaunchedEffect(Unit) {
+        viewModel.loadProduct(barcode)
+    }
+
     CustomScaffold(
         title = stringResource(R.string.add_product_title),
         showCloseButton = true,
@@ -32,8 +40,16 @@ fun AddProductScreen(
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (barcode != null) {
-                Text(barcode)
+            if (barcode == null) {
+                //TODO: Show screen to add product manually
+            } else {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+
+                    ) {
+                    Text(viewModel.product.value?.name ?: "")
+                }
             }
         }
     }
