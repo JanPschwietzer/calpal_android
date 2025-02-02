@@ -41,7 +41,7 @@ fun MealListItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(4.dp)
-            .background(color = MaterialTheme.colorScheme.surfaceContainer)
+            .background(color = MaterialTheme.colorScheme.surfaceContainerLow)
             .clickable {
                 navController.navigate(Screen.Details.createRoute(meal.ordinal.toString())) { launchSingleTop = true }
             },

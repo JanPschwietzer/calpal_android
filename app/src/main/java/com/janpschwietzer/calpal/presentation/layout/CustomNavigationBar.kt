@@ -33,13 +33,6 @@ fun CustomNavigationBar(navController: NavHostController) {
                 )
             },
             label = { Text(stringResource(R.string.dashboard_title)) },
-            colors = NavigationBarItemDefaults.colors(
-                selectedTextColor = MaterialTheme.colorScheme.onBackground,
-                selectedIconColor = MaterialTheme.colorScheme.onBackground,
-                unselectedTextColor = Color.Gray,
-                unselectedIconColor = Color.Gray,
-                indicatorColor = Color.Transparent,
-            )
         )
         NavigationBarItem(
             selected = navController.currentDestination?.route == "overview",
@@ -51,13 +44,6 @@ fun CustomNavigationBar(navController: NavHostController) {
                 )
             },
             label = { Text(stringResource(R.string.overview_title)) },
-            colors = NavigationBarItemDefaults.colors(
-                selectedTextColor = MaterialTheme.colorScheme.onBackground,
-                selectedIconColor = MaterialTheme.colorScheme.onBackground,
-                unselectedTextColor = Color.Gray,
-                unselectedIconColor = Color.Gray,
-                indicatorColor = Color.Transparent,
-            )
         )
     }
 }

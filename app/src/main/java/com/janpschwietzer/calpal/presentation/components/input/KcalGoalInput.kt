@@ -37,16 +37,7 @@ fun KcalGoalInput(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             enabled = isEditable,
             modifier = Modifier.weight(1f),
-            singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-                focusedTextColor = MaterialTheme.colorScheme.onBackground,
-                disabledBorderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
-                disabledTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
-                disabledPlaceholderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-                disabledLabelColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-                focusedBorderColor = MaterialTheme.colorScheme.primary
-            )
+            singleLine = true
         )
 
         Spacer(modifier = Modifier.width(8.dp))
