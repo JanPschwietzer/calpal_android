@@ -54,4 +54,5 @@
     <string name="activitylevel_moderate">moderate Aktivität</string>
     <string name="activitylevel_high">hohe Aktivität</string>
     <string name="activitylevel_very_high">sehr hohe Aktivität</string>
+    <string name="amountEaten">amount eaten</string>
 </resources>

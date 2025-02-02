@@ -21,7 +21,6 @@ data class EatenProductEntity(
 
 fun EatenProductEntity.toEatenProductModel(): EatenProductModel {
     return EatenProductModel(
-        id = id,
         barcode = barcode,
         date = dateEaten,
         meal = MealTime.fromId(meal),

@@ -3,8 +3,10 @@ package com.janpschwietzer.calpal.presentation.views.settings.user
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -22,7 +24,7 @@ import com.janpschwietzer.calpal.presentation.components.dropdown.ActivityLevelD
 import com.janpschwietzer.calpal.presentation.components.dropdown.DietGoalDropdown
 import com.janpschwietzer.calpal.presentation.components.dropdown.GenderDropdown
 import com.janpschwietzer.calpal.presentation.components.input.KcalGoalInput
-import com.janpschwietzer.calpal.presentation.components.input.NameInputField
+import com.janpschwietzer.calpal.presentation.components.input.BasicInputField
 import com.janpschwietzer.calpal.presentation.components.input.WeightHeightInput
 import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
@@ -50,7 +52,11 @@ fun UserSettingsScreen(
         ) {
             Spacer(modifier = Modifier.height(8.dp))
 
-            NameInputField(user?.name, viewModel::updateName)
+            BasicInputField(
+                label = stringResource(R.string.name),
+                value = user?.name,
+                onValueChange = viewModel::updateName
+            )
 
             Spacer(modifier = Modifier.height(8.dp))
 
