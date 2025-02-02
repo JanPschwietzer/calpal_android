@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.janpschwietzer.calpal.presentation.views.product.add.AddProductScreen
+import com.janpschwietzer.calpal.presentation.views.product.add.AddEatenProductScreen
 import com.janpschwietzer.calpal.presentation.views.dashboard.DashboardScreen
 import com.janpschwietzer.calpal.presentation.views.details.DetailsScreen
 import com.janpschwietzer.calpal.presentation.views.overview.OverviewScreen
@@ -51,7 +51,7 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
             }),
         ) { backStackEntry ->
             val barcode = backStackEntry.arguments?.getString("barcode")
-            AddProductScreen(navController, barcode = URLDecoder.decode(barcode, "UTF-8"))
+            AddEatenProductScreen(navController, barcode = URLDecoder.decode(barcode, "UTF-8"))
         }
 
         composable(Screen.SearchProduct.route) {

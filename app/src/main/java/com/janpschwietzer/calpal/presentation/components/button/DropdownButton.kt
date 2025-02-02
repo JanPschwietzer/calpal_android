@@ -30,13 +30,14 @@ import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 @Composable
 fun DropdownButton(
     title: String,
+    modifier: Modifier = Modifier,
     options: List<String>,
     selectedOption: String,
     onOptionSelected: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(modifier = modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

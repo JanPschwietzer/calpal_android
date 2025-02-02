@@ -12,10 +12,13 @@ import androidx.compose.ui.unit.dp
 import com.janpschwietzer.calpal.R
 
 @Composable
-fun SaveButton(onClick: () -> Unit) {
+fun SaveButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
     Button(
         onClick = onClick,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(60.dp),
         shape = MaterialTheme.shapes.extraSmall

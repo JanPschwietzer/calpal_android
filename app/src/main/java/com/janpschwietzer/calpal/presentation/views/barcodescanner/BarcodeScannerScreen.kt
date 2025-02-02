@@ -1,14 +1,14 @@
 package com.janpschwietzer.calpal.presentation.views.barcodescanner
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.runtime.Composable
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.presentation.components.button.CloseButton
@@ -22,6 +22,26 @@ fun BarcodeScannerScreen(
     onBarcodeScanned: (String) -> Unit,
     onCloseClicked: () -> Unit
 ) {
+    // Überprüfen, ob die Kamera-Berechtigung bereits erteilt wurde
+    var hasCameraPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(navController.context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+        )
+    }
+
+    // Launcher für die Berechtigungsanfrage
+    val requestPermissionLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            hasCameraPermission = isGranted
+        }
+
+    // Wenn die Berechtigung noch nicht erteilt ist, Anfrage starten
+    LaunchedEffect(Unit) {
+        if (!hasCameraPermission) {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
