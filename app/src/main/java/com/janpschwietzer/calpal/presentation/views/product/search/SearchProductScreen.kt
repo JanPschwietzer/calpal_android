@@ -67,10 +67,6 @@ fun SearchProductScreen(
                 value = textFieldValue,
                 onValueChange = { textFieldValue = it },
                 singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-                    focusedTextColor = MaterialTheme.colorScheme.onBackground,
-                ),
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Search
                 ),

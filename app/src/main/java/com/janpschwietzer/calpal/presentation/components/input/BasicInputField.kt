@@ -26,10 +26,6 @@ fun BasicInputField(
         label = { Text(label) },
         modifier = modifier.fillMaxWidth(),
         singleLine = true,
-        colors = OutlinedTextFieldDefaults.colors(
-            unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-            focusedTextColor = MaterialTheme.colorScheme.onBackground,
-        ),
         keyboardOptions = keyboardOptions
     )
 }

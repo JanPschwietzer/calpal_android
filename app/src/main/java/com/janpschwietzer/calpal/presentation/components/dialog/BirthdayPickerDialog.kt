@@ -31,9 +31,6 @@ fun BirthdatePickerDialog(
 
         DatePickerDialog(
             onDismissRequest = onDismiss,
-            colors = DatePickerDefaults.colors(
-                containerColor = MaterialTheme.colorScheme.background
-            ),
             confirmButton = {
                 TextButton(onClick = {
                     datePickerState.selectedDateMillis?.let { millis ->
