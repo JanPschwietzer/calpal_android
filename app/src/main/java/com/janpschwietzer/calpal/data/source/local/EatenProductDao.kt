@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import com.janpschwietzer.calpal.data.model.EatenProductModel
 import com.janpschwietzer.calpal.util.enums.MealTime
+import com.janpschwietzer.calpal.util.enums.PortionUnit
 
 @Entity(tableName = "eaten_product")
 data class EatenProductEntity(
@@ -16,7 +17,7 @@ data class EatenProductEntity(
     val dateEaten: Long,
     val meal: Int,
     val amount: Int,
-    val unit: String,
+    val unit: Int,
 )
 
 fun EatenProductEntity.toEatenProductModel(): EatenProductModel {
@@ -25,7 +26,7 @@ fun EatenProductEntity.toEatenProductModel(): EatenProductModel {
         date = dateEaten,
         meal = MealTime.fromId(meal),
         amount = amount,
-        unit = unit
+        unit = PortionUnit.fromId(unit)
     )
 }
 

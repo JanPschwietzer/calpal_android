@@ -1,11 +1,15 @@
 package com.janpschwietzer.calpal.presentation.views.product.add
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.data.model.EatenProductModel
 import com.janpschwietzer.calpal.data.model.ProductModel
+import com.janpschwietzer.calpal.data.repository.EatenProductRepository
 import com.janpschwietzer.calpal.data.repository.ProductRepository
 import com.janpschwietzer.calpal.util.enums.MealTime
+import com.janpschwietzer.calpal.util.enums.PortionUnit
 import com.janpschwietzer.calpal.util.extensions.LocalDateConverter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +19,10 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class AddEatenProductViewModel @Inject constructor(private val productRepository: ProductRepository) : ViewModel() {
+class AddEatenProductViewModel @Inject constructor(
+    private val eatenProductRepository: EatenProductRepository,
+    private val productRepository: ProductRepository
+) : ViewModel() {
 
     private val _product = MutableStateFlow<ProductModel?>(null)
     val product: StateFlow<ProductModel?> = _product
@@ -25,11 +32,14 @@ class AddEatenProductViewModel @Inject constructor(private val productRepository
             barcode = 0,
             date = LocalDateConverter.toTimestamp(LocalDate.now()) ?: 0,
             meal = MealTime.BREAKFAST,
-            amount = 0,
-            unit = ""
+            amount = 1,
+            unit = PortionUnit.PORTION
         )
     )
     val eatenProduct: StateFlow<EatenProductModel> = _eatenProduct
+
+    private val _amount = MutableStateFlow<Int?>(1)
+    val amount: StateFlow<Int?> = _amount
 
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -52,17 +62,44 @@ class AddEatenProductViewModel @Inject constructor(private val productRepository
 
     private fun setupEatenProductValues() {
         _eatenProduct.value = _eatenProduct.value.copy(
-            barcode = product.value?.barcode ?: 0,
-            amount = product.value?.portionSize ?: 0,
-            unit = product.value?.portionUnit ?: ""
+            barcode = product.value?.barcode ?: 0
         )
     }
 
     fun setEatenProductAmount(amount: String) {
-        _eatenProduct.value = _eatenProduct.value.copy(amount = amount.toIntOrNull()?: 0)
+        _amount.value = amount.toIntOrNull()
+        _eatenProduct.value = _eatenProduct.value.copy(amount = amount.toIntOrNull() ?: 0)
+
     }
 
     fun setEatenProductMealTime(mealTime: MealTime) {
         _eatenProduct.value = _eatenProduct.value.copy(meal = mealTime)
+    }
+
+    fun setEatenProductPortionUnit(portionUnit: PortionUnit) {
+        _eatenProduct.value = _eatenProduct.value.copy(unit = portionUnit)
+    }
+
+    fun favoriteProduct() {
+        val product = product.value ?: return
+        viewModelScope.launch {
+            productRepository.toggleFavorite(product)
+            productRepository.getProduct(product.barcode)?.let {
+                _product.value = it
+            }
+        }
+    }
+
+    fun buildPortionUnitString(context: Context): String {
+        if (_eatenProduct.value.unit == PortionUnit.METRICAL) {
+            return "${context.getString(R.string.amount)}: ${product.value?.portionUnit?: "g"}"
+        }
+        return "${context.getString(R.string.amount)}: (${product.value?.portionSize}${product.value?.portionUnit?: "g"})"
+    }
+
+    fun saveEatenProduct() {
+        viewModelScope.launch {
+            eatenProductRepository.saveEatenProduct(eatenProduct.value)
+        }
     }
 }

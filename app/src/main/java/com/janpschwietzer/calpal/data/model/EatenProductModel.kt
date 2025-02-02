@@ -2,13 +2,14 @@ package com.janpschwietzer.calpal.data.model
 
 import com.janpschwietzer.calpal.data.source.local.EatenProductEntity
 import com.janpschwietzer.calpal.util.enums.MealTime
+import com.janpschwietzer.calpal.util.enums.PortionUnit
 
 data class EatenProductModel(
     val barcode: Long,
     val date: Long,
     val meal: MealTime,
     val amount: Int,
-    val unit: String
+    val unit: PortionUnit
 )
 
 fun EatenProductModel.toEatenProductEntity(): EatenProductEntity {
@@ -17,6 +18,6 @@ fun EatenProductModel.toEatenProductEntity(): EatenProductEntity {
         dateEaten = date,
         meal = meal.ordinal,
         amount = amount,
-        unit = unit
+        unit = unit.ordinal
     )
 }

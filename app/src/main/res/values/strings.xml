@@ -54,5 +54,10 @@
     <string name="activitylevel_moderate">moderate activity</string>
     <string name="activitylevel_high">high activity</string>
     <string name="activitylevel_very_high">very high activity</string>
-    <string name="amountEaten">amount eaten</string>
+
+
+    <string name="amount">amount</string>
+    <string name="edit_product">edit product</string>
+    <string name="unit_metrical">grams</string>
+    <string name="unit_portion">portions</string>
 </resources>

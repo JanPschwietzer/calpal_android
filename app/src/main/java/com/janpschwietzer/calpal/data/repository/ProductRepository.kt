@@ -16,7 +16,7 @@ interface ProductRepository {
     suspend fun getFavoriteProducts(): List<ProductModel>
     suspend fun searchProducts(query: String): List<ProductModel>
     suspend fun getMostAddedProducts(): List<ProductModel>
-    suspend fun updateFavorite(barcode: Long, isFavorite: Boolean)
+    suspend fun toggleFavorite(product: ProductModel)
     suspend fun incrementTimesAdded(barcode: Long)
     suspend fun deleteProduct(barcode: Long)
 }
@@ -49,11 +49,15 @@ class ProductRepositoryImpl(
     }
 
     override suspend fun getAllProducts(): List<ProductModel> {
-        return productDao.getAllProducts().map { it.toProductModel() }
+        return withContext(Dispatchers.IO) {
+            return@withContext productDao.getAllProducts().map { it.toProductModel() }
+        }
     }
 
     override suspend fun getFavoriteProducts(): List<ProductModel> {
-        return productDao.getFavoriteProducts().map { it.toProductModel() }
+        return withContext(Dispatchers.IO) {
+            return@withContext productDao.getFavoriteProducts().map { it.toProductModel() }
+        }
     }
 
 
@@ -64,18 +68,26 @@ class ProductRepositoryImpl(
     }
 
     override suspend fun getMostAddedProducts(): List<ProductModel> {
-        return productDao.getMostAddedProducts().map { it.toProductModel() }
+        return withContext(Dispatchers.IO) {
+            return@withContext productDao.getMostAddedProducts().map { it.toProductModel() }
+        }
     }
 
-    override suspend fun updateFavorite(barcode: Long, isFavorite: Boolean) {
-        productDao.updateFavorite(barcode, isFavorite)
+    override suspend fun toggleFavorite(product: ProductModel) {
+        withContext(Dispatchers.IO) {
+            productDao.updateFavorite(product.barcode, !product.isFavorite)
+        }
     }
 
     override suspend fun incrementTimesAdded(barcode: Long) {
-        productDao.incrementTimesAdded(barcode)
+        withContext(Dispatchers.IO) {
+            productDao.incrementTimesAdded(barcode)
+        }
     }
 
     override suspend fun deleteProduct(barcode: Long) {
-        productDao.deleteProduct(barcode)
+        withContext(Dispatchers.IO) {
+            productDao.deleteProduct(barcode)
+        }
     }
 }
