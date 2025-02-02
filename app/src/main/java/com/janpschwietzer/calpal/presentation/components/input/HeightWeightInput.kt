@@ -33,10 +33,6 @@ fun WeightHeightInput(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.weight(1f),
             singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-                focusedTextColor = MaterialTheme.colorScheme.onBackground,
-            )
         )
 
         Spacer(modifier = Modifier.width(8.dp))
@@ -48,10 +44,6 @@ fun WeightHeightInput(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.weight(1f),
             singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedTextColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
-                focusedTextColor = MaterialTheme.colorScheme.onBackground,
-            )
         )
     }
 }

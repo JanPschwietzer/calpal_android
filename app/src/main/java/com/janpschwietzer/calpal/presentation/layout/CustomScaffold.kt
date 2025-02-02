@@ -15,6 +15,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +26,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.navigation.Screen
+import com.janpschwietzer.calpal.ui.theme.onPrimaryLight
+import com.janpschwietzer.calpal.ui.theme.primaryLight
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,15 +44,16 @@ fun CustomScaffold(
         topBar = {
             TopAppBar(
                 title = { Text(title) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = primaryLight,
+                    actionIconContentColor = onPrimaryLight,
+                    titleContentColor = onPrimaryLight,
+                    scrolledContainerColor = primaryLight,
+                    navigationIconContentColor = onPrimaryLight
+                ),
                 actions = {
                     if (showCloseButton) {
                         IconButton(
-                            colors = IconButtonColors(
-                                contentColor = MaterialTheme.colorScheme.onPrimary,
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                disabledContentColor = Color.Gray,
-                                disabledContainerColor = Color.Gray
-                            ),
                             onClick = { navController.popBackStack() }
                         ) {
                             Icon(
@@ -58,12 +63,6 @@ fun CustomScaffold(
                         }
                     } else {
                         IconButton(
-                            colors = IconButtonColors(
-                                contentColor = MaterialTheme.colorScheme.onPrimary,
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                disabledContentColor = Color.Gray,
-                                disabledContainerColor = Color.Gray
-                            ),
                             onClick = { navController.navigate(Screen.Settings.route) { launchSingleTop = true } }
                         ) {
                             Icon(
