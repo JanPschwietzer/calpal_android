@@ -4,6 +4,8 @@ import com.janpschwietzer.calpal.data.model.UserModel
 import com.janpschwietzer.calpal.data.model.toUserEntity
 import com.janpschwietzer.calpal.data.source.local.UserDao
 import com.janpschwietzer.calpal.data.source.local.toUserModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 interface UserRepository {
     suspend fun saveUser(user: UserModel)
@@ -16,7 +18,9 @@ class UserRepositoryImpl(private val userDao: UserDao): UserRepository {
     }
 
     override suspend fun getUser(): UserModel? {
-        return userDao.getUser()?.toUserModel()
+        return withContext(Dispatchers.IO) {
+            return@withContext userDao.getUser()?.toUserModel()
+        }
     }
 
 }
