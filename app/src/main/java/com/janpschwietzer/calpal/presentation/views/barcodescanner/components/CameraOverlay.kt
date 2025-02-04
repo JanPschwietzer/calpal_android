@@ -1,4 +1,4 @@
-package com.janpschwietzer.calpal.presentation.components.camera
+package com.janpschwietzer.calpal.presentation.views.barcodescanner.components
 
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode

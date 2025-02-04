@@ -17,9 +17,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.data.model.ChartModel
-import com.janpschwietzer.calpal.presentation.components.listitem.MealListItem
+import com.janpschwietzer.calpal.presentation.views.dashboard.components.MealListItem
 import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
-import com.janpschwietzer.calpal.presentation.components.graph.PieChart
+import com.janpschwietzer.calpal.presentation.views.dashboard.components.PieChart
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.MealTime
 

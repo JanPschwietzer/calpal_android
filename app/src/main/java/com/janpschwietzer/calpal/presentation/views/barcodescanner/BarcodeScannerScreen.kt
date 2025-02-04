@@ -12,8 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.presentation.components.button.CloseButton
-import com.janpschwietzer.calpal.presentation.components.camera.CameraOverlay
-import com.janpschwietzer.calpal.presentation.components.camera.CameraPreviewView
+import com.janpschwietzer.calpal.presentation.views.barcodescanner.components.CameraOverlay
+import com.janpschwietzer.calpal.presentation.views.barcodescanner.components.CameraPreviewView
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 
 @Composable
