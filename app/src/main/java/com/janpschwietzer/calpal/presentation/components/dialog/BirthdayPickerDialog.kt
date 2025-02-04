@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.janpschwietzer.calpal.R
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -41,12 +43,12 @@ fun BirthdatePickerDialog(
                     }
                     onDismiss()
                 }) {
-                    Text("OK")
+                    Text(stringResource(R.string.ok))
                 }
             },
             dismissButton = {
                 TextButton(onClick = onDismiss) {
-                    Text("Abbrechen")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         ) {

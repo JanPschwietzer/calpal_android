@@ -1,4 +1,4 @@
-package com.janpschwietzer.calpal.presentation.components.listitem
+package com.janpschwietzer.calpal.presentation.views.dashboard.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

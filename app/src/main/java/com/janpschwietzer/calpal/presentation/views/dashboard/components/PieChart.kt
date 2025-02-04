@@ -1,4 +1,4 @@
-package com.janpschwietzer.calpal.presentation.components.graph
+package com.janpschwietzer.calpal.presentation.views.dashboard.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement

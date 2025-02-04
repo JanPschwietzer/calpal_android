@@ -59,4 +59,8 @@
     <string name="edit_product">Produkt bearbeiten</string>
     <string name="unit_metrical">gramm</string>
     <string name="unit_portion">Portionen</string>
+    <string name="favorites">Favoriten</string>
+    <string name="often_added">Oft hinzugefügt</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="ok">OK</string>
 </resources>
