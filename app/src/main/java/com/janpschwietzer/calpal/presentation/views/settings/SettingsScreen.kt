@@ -36,17 +36,28 @@ fun SettingsScreen(navController: NavHostController) {
                 .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Button(
                 onClick = { navController.navigate(Screen.UserSettings.route) { launchSingleTop = true } },
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(8.dp)
                     .fillMaxWidth()
                     .height(60.dp),
                 shape = MaterialTheme.shapes.extraSmall
             ) {
                 Text(stringResource(R.string.user_settings))
+            }
+
+            Button(
+                onClick = { navController.navigate(Screen.ProductSettings.route) { launchSingleTop = true } },
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .height(60.dp),
+                shape = MaterialTheme.shapes.extraSmall
+            ) {
+                Text(stringResource(R.string.product_settings))
             }
         }
     }
