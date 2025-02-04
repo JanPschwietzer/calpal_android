@@ -52,7 +52,6 @@ class AddEatenProductViewModel @Inject constructor(
 
             if (barcodeLong == null) {
                 _isLoading.value = false
-                return@launch
             } else {
                 _product.value = productRepository.getProduct(barcodeLong)
                 setupEatenProductValues()
@@ -63,14 +62,14 @@ class AddEatenProductViewModel @Inject constructor(
 
     private fun setupEatenProductValues() {
         _eatenProduct.value = _eatenProduct.value.copy(
-            barcode = product.value?.barcode ?: 0
+            barcode = product.value?.barcode ?: 0,
+            amount = _amount.value ?: 1
         )
     }
 
     fun setEatenProductAmount(amount: String) {
         _amount.value = amount.toIntOrNull()
-        _eatenProduct.value = _eatenProduct.value.copy(amount = amount.toIntOrNull() ?: 0)
-
+        _eatenProduct.value = _eatenProduct.value.copy(amount = (amount.toIntOrNull() ?: 0))
     }
 
     fun setEatenProductMealTime(mealTime: MealTime) {
@@ -78,6 +77,7 @@ class AddEatenProductViewModel @Inject constructor(
     }
 
     fun setEatenProductPortionUnit(portionUnit: PortionUnit) {
+        setEatenProductAmount(_amount.value.toString())
         _eatenProduct.value = _eatenProduct.value.copy(unit = portionUnit)
     }
 

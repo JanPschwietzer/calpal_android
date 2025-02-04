@@ -1,6 +1,7 @@
 package com.janpschwietzer.calpal.presentation.views.dashboard
 
 import android.health.connect.datatypes.MealType
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.janpschwietzer.calpal.data.model.EatenProductModel
@@ -9,6 +10,7 @@ import com.janpschwietzer.calpal.data.repository.EatenProductRepository
 import com.janpschwietzer.calpal.data.repository.ProductRepository
 import com.janpschwietzer.calpal.data.repository.UserRepository
 import com.janpschwietzer.calpal.util.enums.MealTime
+import com.janpschwietzer.calpal.util.enums.PortionUnit
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -65,21 +67,32 @@ class DashboardViewModel @Inject constructor(
             _eatenProducts.value = eatenProductRepository.getEatenProducts(LocalDate.now())
 
             _eatenCalories.value = 0
+            _eatenMeals[MealTime.BREAKFAST]?.value = 0
+            _eatenMeals[MealTime.LUNCH]?.value = 0
+            _eatenMeals[MealTime.DINNER]?.value = 0
+            _eatenMeals[MealTime.SNACK]?.value = 0
 
             _eatenProducts.value.forEach { value ->
-                val kcal = productRepository.getProduct(value.barcode)?.kcal
-                if (kcal != null) {
-                    _eatenCalories.value += kcal / 100 * value.amount
+                val prod = productRepository.getProduct(value.barcode)
+
+                //TODO: Gegebenenfalls in einen Service etc auslagern, wird sicher öfter benötigt
+                if (prod?.kcal != null) {
+                    val amount = if (value.unit == PortionUnit.PORTION) {
+                        (prod.kcal.toFloat() / 100f) * (value.amount * (prod.portionSize ?: 1))
+                    } else {
+                        (prod.kcal.toFloat() / 100f) * value.amount
+                    }.toInt()
+                    _eatenCalories.value += amount
 
                     if (_eatenMeals[value.meal]?.value == null) {
-                        _eatenMeals[value.meal]?.value = kcal / 100 * value.amount
+                        _eatenMeals[value.meal]?.value = amount
                     } else {
-                        _eatenMeals[value.meal]?.value = _eatenMeals[value.meal]?.value?.plus(kcal / 100 * value.amount)!!
+                        _eatenMeals[value.meal]?.value = _eatenMeals[value.meal]?.value?.plus(amount)!!
                     }
                 }
             }
 
-
+            Log.d("DashboardViewModel", "loadData: ${_eatenProducts.value}")
         }
     }
 }
