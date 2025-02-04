@@ -4,8 +4,6 @@ import com.janpschwietzer.calpal.data.model.UserModel
 import com.janpschwietzer.calpal.data.model.toUserEntity
 import com.janpschwietzer.calpal.data.source.local.UserDao
 import com.janpschwietzer.calpal.data.source.local.toUserModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 interface UserRepository {
     suspend fun saveUser(user: UserModel)
