@@ -8,11 +8,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
@@ -20,6 +24,7 @@ import com.janpschwietzer.calpal.data.model.ChartModel
 import com.janpschwietzer.calpal.presentation.views.dashboard.components.MealListItem
 import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.presentation.views.dashboard.components.PieChart
+import com.janpschwietzer.calpal.presentation.views.product.add.AddEatenProductViewModel
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.MealTime
 
@@ -27,6 +32,15 @@ import com.janpschwietzer.calpal.util.enums.MealTime
 fun DashboardScreen(navController: NavHostController) {
 
     val scrollState = rememberScrollState()
+    val viewModel: DashboardViewModel = hiltViewModel()
+
+    val maxCalories by viewModel.maxCalories.collectAsState()
+    val eatenCalories by viewModel.eatenCalories.collectAsState()
+    val eatenMeals by viewModel.totalEatenFlow.collectAsState()
+
+    LaunchedEffect(Unit) {
+         viewModel.loadData()
+    }
 
     CustomScaffold(
         navController = navController
@@ -41,9 +55,9 @@ fun DashboardScreen(navController: NavHostController) {
         ) {
             PieChart(
                 modifier = Modifier.padding(40.dp),
+                maxCalories = maxCalories?: 2000,
                 charts = listOf(
-                    ChartModel(percentage = 10, value = 200, color = MaterialTheme.colorScheme.primary, description = stringResource(R.string.eaten)),
-                    ChartModel(percentage = 90, value = 1800, color = MaterialTheme.colorScheme.surfaceContainer, description = stringResource(R.string.remaining))
+                    ChartModel(value = eatenCalories?: 0, color = MaterialTheme.colorScheme.primary, description = stringResource(R.string.eaten))
                 ),
                 size = 300.dp
             )
@@ -53,8 +67,8 @@ fun DashboardScreen(navController: NavHostController) {
                     MealListItem(
                         navController = navController,
                         meal = value,
-                        caloriesEaten = 0,
-                        caloriesGoal = 600
+                        caloriesEaten = eatenMeals[value] ?: 0,
+                        caloriesGoal = ((maxCalories?.times(value.factor))?: (2000*value.factor)).toInt()
                     )
                 }
             }

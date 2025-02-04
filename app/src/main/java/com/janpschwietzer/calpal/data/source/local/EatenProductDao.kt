@@ -33,8 +33,8 @@ fun EatenProductEntity.toEatenProductModel(): EatenProductModel {
 @Dao
 interface EatenProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEatenProduct(eatenProduct: EatenProductEntity): Long
+    suspend fun insertEatenProduct(eatenProduct: EatenProductEntity): Long
 
     @Query("SELECT * FROM eaten_product WHERE dateEaten = :date")
-    fun getEatenProducts(date: Long): List<EatenProductEntity>
+    suspend fun getEatenProducts(date: Long): List<EatenProductEntity>
 }
