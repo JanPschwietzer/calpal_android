@@ -18,9 +18,7 @@ class UserRepositoryImpl(private val userDao: UserDao): UserRepository {
     }
 
     override suspend fun getUser(): UserModel? {
-        return withContext(Dispatchers.IO) {
-            return@withContext userDao.getUser()?.toUserModel()
-        }
+        return userDao.getUser()?.toUserModel()
     }
 
 }

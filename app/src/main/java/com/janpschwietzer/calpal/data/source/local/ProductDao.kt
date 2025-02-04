@@ -62,26 +62,26 @@ interface ProductDao {
     fun insertProduct(product: ProductEntity): Long
 
     @Query("SELECT * FROM product WHERE barcode = :barcode")
-    fun getProduct(barcode: Long): ProductEntity?
+    suspend fun getProduct(barcode: Long): ProductEntity?
 
     @Query("SELECT * FROM product")
-    fun getAllProducts(): List<ProductEntity>
+    suspend fun getAllProducts(): List<ProductEntity>
 
     @Query("SELECT * FROM product WHERE isFavorite = 1")
-    fun getFavoriteProducts(): List<ProductEntity>
+    suspend fun getFavoriteProducts(): List<ProductEntity>
 
     @Query("SELECT * FROM product WHERE name LIKE '%' || :query || '%' OR brand LIKE '%' || :query || '%'")
-    fun searchProducts(query: String): List<ProductEntity>
+    suspend fun searchProducts(query: String): List<ProductEntity>
 
     @Query("SELECT * FROM product ORDER BY timesAdded DESC")
-    fun getMostAddedProducts(): List<ProductEntity>
+    suspend fun getMostAddedProducts(): List<ProductEntity>
 
     @Query("UPDATE product SET isFavorite = :isFavorite WHERE barcode = :barcode")
-    fun updateFavorite(barcode: Long, isFavorite: Boolean)
+    suspend fun updateFavorite(barcode: Long, isFavorite: Boolean)
 
     @Query("UPDATE product SET timesAdded = timesAdded + 1 WHERE barcode = :barcode")
-    fun incrementTimesAdded(barcode: Long)
+    suspend fun incrementTimesAdded(barcode: Long)
 
     @Query("DELETE FROM product WHERE barcode = :barcode")
-    fun deleteProduct(barcode: Long)
+    suspend fun deleteProduct(barcode: Long)
 }

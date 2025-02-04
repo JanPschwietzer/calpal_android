@@ -1,5 +1,6 @@
 package com.janpschwietzer.calpal.data.source.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Entity
@@ -28,6 +29,7 @@ data class UserEntity(
     var kcalGoal: Int?
 )
 
+
 fun UserEntity.toUserModel(): UserModel {
     return UserModel(
         name = name,
@@ -44,8 +46,8 @@ fun UserEntity.toUserModel(): UserModel {
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: UserEntity): Long
+    suspend fun insertUser(user: UserEntity): Long
 
     @Query("SELECT * FROM user LIMIT 1")
-    fun getUser(): UserEntity?
+    suspend fun getUser(): UserEntity?
 }

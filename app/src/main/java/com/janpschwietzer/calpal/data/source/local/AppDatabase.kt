@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.janpschwietzer.calpal.util.extensions.LocalDateConverter
 
 @Database(entities = [UserEntity::class, ProductEntity::class, EatenProductEntity::class], version = 1, exportSchema = false)
+@TypeConverters(LocalDateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun productDao(): ProductDao

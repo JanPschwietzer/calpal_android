@@ -3,11 +3,11 @@ package com.janpschwietzer.calpal.util.enums
 import android.content.Context
 import com.janpschwietzer.calpal.R
 
-enum class MealTime(private val stringResId: Int) {
-    BREAKFAST(R.string.mealtime_breakfast),
-    LUNCH(R.string.mealtime_lunch),
-    DINNER(R.string.mealtime_dinner),
-    SNACK(R.string.mealtime_snacks);
+enum class MealTime(private val stringResId: Int, val factor: Double) {
+    BREAKFAST(R.string.mealtime_breakfast, 0.25),
+    LUNCH(R.string.mealtime_lunch, 0.35),
+    DINNER(R.string.mealtime_dinner, 0.30),
+    SNACK(R.string.mealtime_snacks, 0.10);
 
     fun getDisplayedString(context: Context): String {
         return context.getString(stringResId)

@@ -36,6 +36,7 @@ fun DashboardScreen(navController: NavHostController) {
 
     val maxCalories by viewModel.maxCalories.collectAsState()
     val eatenCalories by viewModel.eatenCalories.collectAsState()
+    val eatenMeals by viewModel.totalEatenFlow.collectAsState()
 
     LaunchedEffect(Unit) {
          viewModel.loadData()
@@ -66,8 +67,8 @@ fun DashboardScreen(navController: NavHostController) {
                     MealListItem(
                         navController = navController,
                         meal = value,
-                        caloriesEaten = 0,
-                        caloriesGoal = 600
+                        caloriesEaten = eatenMeals[value] ?: 0,
+                        caloriesGoal = ((maxCalories?.times(value.factor))?: (2000*value.factor)).toInt()
                     )
                 }
             }

@@ -12,6 +12,7 @@ import com.janpschwietzer.calpal.util.enums.MealTime
 import com.janpschwietzer.calpal.util.enums.PortionUnit
 import com.janpschwietzer.calpal.util.extensions.LocalDateConverter
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -46,7 +47,7 @@ class AddEatenProductViewModel @Inject constructor(
 
     fun loadProduct(barcode: String?) {
         _isLoading.value = true
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val barcodeLong = barcode?.toLongOrNull()
 
             if (barcodeLong == null) {
@@ -82,7 +83,7 @@ class AddEatenProductViewModel @Inject constructor(
 
     fun favoriteProduct() {
         val product = product.value ?: return
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             productRepository.toggleFavorite(product)
             productRepository.getProduct(product.barcode)?.let {
                 _product.value = it
@@ -91,14 +92,14 @@ class AddEatenProductViewModel @Inject constructor(
     }
 
     fun buildPortionUnitString(context: Context): String {
-        if (_eatenProduct.value.unit == PortionUnit.METRICAL) {
+        if (product.value?.portionSize == null) {
             return "${context.getString(R.string.amount)}: ${product.value?.portionUnit?: "g"}"
         }
         return "${context.getString(R.string.amount)}: (${product.value?.portionSize}${product.value?.portionUnit?: "g"})"
     }
 
     fun saveEatenProduct() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             eatenProductRepository.saveEatenProduct(eatenProduct.value)
         }
     }
