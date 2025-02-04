@@ -1,9 +1,10 @@
 package com.janpschwietzer.calpal.presentation.views.settings.product_list
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -38,10 +39,10 @@ fun ProductSettingsListScreen(
         showBottomBar = false,
         showCloseButton = true
     ) { paddingValues ->
-        Column(
+        LazyColumn(
             modifier = Modifier.padding(paddingValues).padding(8.dp)
         ) {
-            products.forEach { product ->
+            items(products) { product ->
                 ProductListItem(
                     product = product,
                     navController = navController,
