@@ -64,4 +64,6 @@
     <string name="cancel">Abbrechen</string>
     <string name="ok">OK</string>
     <string name="product_settings">Produkte editieren</string>
+    <string name="search">suchen</string>
+    <string name="filter">filtern</string>
 </resources>

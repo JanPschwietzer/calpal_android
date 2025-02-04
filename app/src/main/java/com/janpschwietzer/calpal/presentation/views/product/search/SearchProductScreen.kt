@@ -76,7 +76,7 @@ fun SearchProductScreen(
                 .padding(8.dp)
         ) {
             OutlinedTextField(
-                label = { Text("search") },
+                label = { Text(stringResource(R.string.search)) },
                 value = textFieldValue,
                 onValueChange = { viewModel.setTextFieldValue(it) },
                 singleLine = true,

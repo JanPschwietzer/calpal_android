@@ -1,10 +1,15 @@
 package com.janpschwietzer.calpal.presentation.views.settings.product_list
 
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -27,6 +32,7 @@ fun ProductSettingsListScreen(
 
     val viewModel: ProductSettingsListViewModel = hiltViewModel()
     val products by viewModel.products.collectAsState()
+    val filterString by viewModel.filterString.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.loadProducts()
@@ -39,17 +45,32 @@ fun ProductSettingsListScreen(
         showBottomBar = false,
         showCloseButton = true
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier.padding(paddingValues).padding(8.dp)
-        ) {
-            items(products) { product ->
-                ProductListItem(
-                    product = product,
-                    navController = navController,
-                    onClick = {
-                        navController.navigate(Screen.ProductSettingsItem.createRoute(product.barcode.toString()))
-                    }
-                )
+
+        Column(
+            modifier = Modifier.padding(paddingValues).fillMaxSize()
+        )
+        {
+            OutlinedTextField(
+                value = filterString,
+                onValueChange = {
+                    viewModel.filterProducts(it)
+                },
+                label = { Text(stringResource(R.string.filter)) },
+                modifier = Modifier.fillMaxWidth().padding(8.dp)
+            )
+
+            LazyColumn(
+                modifier = Modifier.padding(8.dp)
+            ) {
+                items(products) { product ->
+                    ProductListItem(
+                        product = product,
+                        navController = navController,
+                        onClick = {
+                            navController.navigate(Screen.ProductSettingsItem.createRoute(product.barcode.toString()))
+                        }
+                    )
+                }
             }
         }
     }
