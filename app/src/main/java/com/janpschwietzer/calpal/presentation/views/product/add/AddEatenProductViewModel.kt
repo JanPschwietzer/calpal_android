@@ -101,6 +101,9 @@ class AddEatenProductViewModel @Inject constructor(
     fun saveEatenProduct() {
         viewModelScope.launch(Dispatchers.IO) {
             eatenProductRepository.saveEatenProduct(eatenProduct.value)
+            if (product.value?.barcode != null) {
+                productRepository.incrementTimesAdded(product.value?.barcode?: 0)
+            }
         }
     }
 }

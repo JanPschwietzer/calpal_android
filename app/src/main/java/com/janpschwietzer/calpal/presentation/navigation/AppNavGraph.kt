@@ -13,6 +13,7 @@ import com.janpschwietzer.calpal.presentation.views.details.DetailsScreen
 import com.janpschwietzer.calpal.presentation.views.overview.OverviewScreen
 import com.janpschwietzer.calpal.presentation.views.product.search.SearchProductScreen
 import com.janpschwietzer.calpal.presentation.views.settings.SettingsScreen
+import com.janpschwietzer.calpal.presentation.views.settings.product_list.ProductSettingsListScreen
 import com.janpschwietzer.calpal.presentation.views.settings.user.UserSettingsScreen
 import com.janpschwietzer.calpal.util.enums.MealTime
 import java.net.URLDecoder
@@ -58,6 +59,9 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
             SearchProductScreen(navController)
         }
 
+        composable(Screen.ProductSettings.route) {
+            ProductSettingsListScreen(navController)
+        }
 
         composable(Screen.Settings.route) {
             SettingsScreen(navController)

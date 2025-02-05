@@ -64,4 +64,7 @@
     <string name="often_added">often added</string>
     <string name="cancel">cancel</string>
     <string name="ok">OK</string>
+    <string name="product_settings">edit products</string>
+    <string name="search">search</string>
+    <string name="filter">filter</string>
 </resources>

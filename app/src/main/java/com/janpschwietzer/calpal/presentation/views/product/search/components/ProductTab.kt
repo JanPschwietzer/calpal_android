@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.data.model.ProductModel
+import com.janpschwietzer.calpal.presentation.components.list.ProductListItem
 import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.util.enums.GreenScore
 import com.janpschwietzer.calpal.util.enums.NutriScore
@@ -39,28 +40,13 @@ private fun ProductItem(
     product: ProductModel,
     navController: NavHostController
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
-                navController.navigate(Screen.AddProduct.createRoute(product.barcode.toString()))
-            }
-            .padding(8.dp)
-    ) {
-        //TODO: Add image of product
-        Column {
-            Text(
-                text = product.name ?: "",
-                maxLines = 1,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
-            )
-            Text(
-                text = product.brand ?: "",
-                maxLines = 1
-            )
+    ProductListItem(
+        navController = navController,
+        product = product,
+        onClick = {
+            navController.navigate(Screen.AddProduct.createRoute(product.barcode.toString()))
         }
-    }
+    )
 }
 
 @PreviewLightDark

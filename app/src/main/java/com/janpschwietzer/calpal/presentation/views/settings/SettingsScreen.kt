@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,15 +39,27 @@ fun SettingsScreen(navController: NavHostController) {
         ) {
             Spacer(modifier = Modifier.height(8.dp))
 
-            Button(
+            OutlinedButton(
                 onClick = { navController.navigate(Screen.UserSettings.route) { launchSingleTop = true } },
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .height(60.dp),
+                shape = MaterialTheme.shapes.extraSmall,
+
+            ) {
+                Text(stringResource(R.string.user_settings))
+            }
+
+            OutlinedButton(
+                onClick = { navController.navigate(Screen.ProductSettings.route) { launchSingleTop = true } },
+                modifier = Modifier
+                    .padding(8.dp)
                     .fillMaxWidth()
                     .height(60.dp),
                 shape = MaterialTheme.shapes.extraSmall
             ) {
-                Text(stringResource(R.string.user_settings))
+                Text(stringResource(R.string.product_settings))
             }
         }
     }
