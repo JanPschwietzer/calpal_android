@@ -41,7 +41,6 @@ private fun ProductItem(
     navController: NavHostController
 ) {
     ProductListItem(
-        navController = navController,
         product = product,
         onClick = {
             navController.navigate(Screen.AddProduct.createRoute(product.barcode.toString()))

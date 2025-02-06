@@ -37,4 +37,7 @@ interface EatenProductDao {
 
     @Query("SELECT * FROM eaten_product WHERE dateEaten = :date")
     suspend fun getEatenProducts(date: Long): List<EatenProductEntity>
+
+    @Query("SELECT * FROM eaten_product WHERE dateEaten = :date AND meal = :meal")
+    suspend fun getEatenProducts(date: Long, meal: Int): List<EatenProductEntity>
 }

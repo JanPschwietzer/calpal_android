@@ -65,7 +65,6 @@ fun ProductSettingsListScreen(
                 items(products) { product ->
                     ProductListItem(
                         product = product,
-                        navController = navController,
                         onClick = {
                             navController.navigate(Screen.ProductSettingsItem.createRoute(product.barcode.toString()))
                         }

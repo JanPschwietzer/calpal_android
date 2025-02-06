@@ -11,11 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.janpschwietzer.calpal.data.model.EatenProductModel
 import com.janpschwietzer.calpal.data.model.ProductModel
 
 @Composable
-fun ProductListItem(
-    product: ProductModel,
+fun EatenProductListItem(
+    eatenProduct: EatenProductModel,
+    product: ProductModel?,
     onClick: () -> Unit = {}
 ) {
     Row(
@@ -29,15 +31,16 @@ fun ProductListItem(
         //TODO: Add image of product
         Column {
             Text(
-                text = product.name ?: "",
+                text = product?.name ?: "",
                 maxLines = 1,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
             )
             Text(
-                text = product.brand ?: "",
+                text = product?.brand ?: "",
                 maxLines = 1
             )
         }
+        Text(eatenProduct.amount.toString())
     }
 }
