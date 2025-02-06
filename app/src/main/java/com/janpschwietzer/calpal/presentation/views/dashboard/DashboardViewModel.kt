@@ -1,11 +1,9 @@
 package com.janpschwietzer.calpal.presentation.views.dashboard
 
-import android.health.connect.datatypes.MealType
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.janpschwietzer.calpal.data.model.EatenProductModel
-import com.janpschwietzer.calpal.data.model.ProductModel
 import com.janpschwietzer.calpal.data.repository.EatenProductRepository
 import com.janpschwietzer.calpal.data.repository.ProductRepository
 import com.janpschwietzer.calpal.data.repository.UserRepository
@@ -19,7 +17,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import javax.inject.Inject
 

@@ -5,8 +5,6 @@ import com.janpschwietzer.calpal.data.model.toEatenProductEntity
 import com.janpschwietzer.calpal.data.source.local.EatenProductDao
 import com.janpschwietzer.calpal.data.source.local.toEatenProductModel
 import com.janpschwietzer.calpal.util.enums.MealTime
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.time.LocalDate
 
 interface EatenProductRepository {
