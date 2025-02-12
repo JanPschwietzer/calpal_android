@@ -33,4 +33,11 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
+    fun RemoveEatenItem(eatenProduct: EatenProductModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _eatenProducts.value = _eatenProducts.value.filter { it != eatenProduct }
+            eatenProductRepository.removeEatenProduct(eatenProduct)
+        }
+    }
+
 }

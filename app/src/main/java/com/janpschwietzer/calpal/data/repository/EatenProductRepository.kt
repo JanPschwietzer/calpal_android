@@ -11,6 +11,7 @@ interface EatenProductRepository {
     suspend fun saveEatenProduct(eatenProduct: EatenProductModel)
     suspend fun getEatenProducts(date: LocalDate): List<EatenProductModel>
     suspend fun getEatenProducts(date: LocalDate, mealTime: MealTime): List<EatenProductModel>
+    suspend fun removeEatenProduct(eatenProduct: EatenProductModel)
 }
 
 class EatenProductRepositoryImpl(
@@ -26,5 +27,9 @@ class EatenProductRepositoryImpl(
 
     override suspend fun getEatenProducts(date: LocalDate, mealTime: MealTime): List<EatenProductModel> {
         return eatenProductDao.getEatenProducts(date.toEpochDay(), meal = mealTime.ordinal).map { it.toEatenProductModel() }
+    }
+
+    override suspend fun removeEatenProduct(eatenProduct: EatenProductModel) {
+        return eatenProductDao.deleteEatenProduct(eatenProduct.id)
     }
 }

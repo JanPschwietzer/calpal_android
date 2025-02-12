@@ -50,8 +50,12 @@ fun DetailsScreen(
         {
             LazyColumn {
                 items(eatenProducts) { product ->
-                    EatenProductListItem(product, products.find { it.barcode == product.barcode }) {
-                    }
+                    EatenProductListItem(
+                        product,
+                        products.find { it.barcode == product.barcode },
+                        onClick = {},
+                        onDelete = { viewModel.RemoveEatenItem(product) }
+                    )
                 }
             }
         }

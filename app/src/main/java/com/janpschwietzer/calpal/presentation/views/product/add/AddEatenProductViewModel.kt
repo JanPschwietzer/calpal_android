@@ -30,6 +30,7 @@ class AddEatenProductViewModel @Inject constructor(
 
     private val _eatenProduct = MutableStateFlow(
         EatenProductModel(
+            id = null,
             barcode = 0,
             date = LocalDateConverter.toTimestamp(LocalDate.now()) ?: 0,
             meal = MealTime.BREAKFAST,
