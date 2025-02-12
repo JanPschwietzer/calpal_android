@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
@@ -83,7 +84,9 @@ fun EatenProductListItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onClick() }
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.background)
+                    .padding(vertical = 2.dp)
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
                     .padding(8.dp)
             ) {
                 Row(
@@ -91,7 +94,7 @@ fun EatenProductListItem(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column {
                         Text(
                             text = product?.name ?: "",
                             maxLines = 1,
