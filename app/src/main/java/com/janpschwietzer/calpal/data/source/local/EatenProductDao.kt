@@ -22,6 +22,7 @@ data class EatenProductEntity(
 
 fun EatenProductEntity.toEatenProductModel(): EatenProductModel {
     return EatenProductModel(
+        id = id,
         barcode = barcode,
         date = dateEaten,
         meal = MealTime.fromId(meal),
@@ -37,4 +38,10 @@ interface EatenProductDao {
 
     @Query("SELECT * FROM eaten_product WHERE dateEaten = :date")
     suspend fun getEatenProducts(date: Long): List<EatenProductEntity>
+
+    @Query("SELECT * FROM eaten_product WHERE dateEaten = :date AND meal = :meal")
+    suspend fun getEatenProducts(date: Long, meal: Int): List<EatenProductEntity>
+
+    @Query("DELETE FROM eaten_product WHERE id = :id")
+    suspend fun deleteEatenProduct(id: Int?)
 }

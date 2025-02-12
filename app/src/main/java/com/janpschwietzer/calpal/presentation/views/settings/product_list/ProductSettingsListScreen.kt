@@ -2,7 +2,6 @@ package com.janpschwietzer.calpal.presentation.views.settings.product_list
 
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -65,7 +64,6 @@ fun ProductSettingsListScreen(
                 items(products) { product ->
                     ProductListItem(
                         product = product,
-                        navController = navController,
                         onClick = {
                             navController.navigate(Screen.ProductSettingsItem.createRoute(product.barcode.toString()))
                         }

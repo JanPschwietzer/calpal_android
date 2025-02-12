@@ -5,6 +5,7 @@ import com.janpschwietzer.calpal.util.enums.MealTime
 import com.janpschwietzer.calpal.util.enums.PortionUnit
 
 data class EatenProductModel(
+    val id: Int?,
     val barcode: Long,
     val date: Long,
     val meal: MealTime,

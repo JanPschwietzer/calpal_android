@@ -18,7 +18,7 @@ class ProductSettingsListViewModel @Inject constructor(
     private val _products = MutableStateFlow<List<ProductModel>>(emptyList())
     val products: StateFlow<List<ProductModel>> = _products
 
-    private val _filterString = MutableStateFlow<String>("")
+    private val _filterString = MutableStateFlow("")
     val filterString: StateFlow<String> = _filterString
 
     fun loadProducts() {

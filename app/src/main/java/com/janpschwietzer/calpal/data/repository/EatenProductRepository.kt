@@ -4,13 +4,14 @@ import com.janpschwietzer.calpal.data.model.EatenProductModel
 import com.janpschwietzer.calpal.data.model.toEatenProductEntity
 import com.janpschwietzer.calpal.data.source.local.EatenProductDao
 import com.janpschwietzer.calpal.data.source.local.toEatenProductModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.janpschwietzer.calpal.util.enums.MealTime
 import java.time.LocalDate
 
 interface EatenProductRepository {
     suspend fun saveEatenProduct(eatenProduct: EatenProductModel)
     suspend fun getEatenProducts(date: LocalDate): List<EatenProductModel>
+    suspend fun getEatenProducts(date: LocalDate, mealTime: MealTime): List<EatenProductModel>
+    suspend fun removeEatenProduct(eatenProduct: EatenProductModel)
 }
 
 class EatenProductRepositoryImpl(
@@ -22,5 +23,13 @@ class EatenProductRepositoryImpl(
 
     override suspend fun getEatenProducts(date: LocalDate): List<EatenProductModel> {
         return eatenProductDao.getEatenProducts(date.toEpochDay()).map { it.toEatenProductModel() }
+    }
+
+    override suspend fun getEatenProducts(date: LocalDate, mealTime: MealTime): List<EatenProductModel> {
+        return eatenProductDao.getEatenProducts(date.toEpochDay(), meal = mealTime.ordinal).map { it.toEatenProductModel() }
+    }
+
+    override suspend fun removeEatenProduct(eatenProduct: EatenProductModel) {
+        return eatenProductDao.deleteEatenProduct(eatenProduct.id)
     }
 }

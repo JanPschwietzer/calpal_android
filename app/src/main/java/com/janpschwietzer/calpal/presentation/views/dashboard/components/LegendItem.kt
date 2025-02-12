@@ -32,7 +32,7 @@ fun LegendItem(
             )
         }
         Text(
-            "${description}: ${value} kcal",
+            "$description: $value kcal",
             fontSize = 12.sp
         )
     }

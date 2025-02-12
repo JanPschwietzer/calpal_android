@@ -1,7 +1,6 @@
 package com.janpschwietzer.calpal.util.enums
 
 import android.content.Context
-import androidx.compose.ui.res.stringResource
 import com.janpschwietzer.calpal.R
 
 enum class PortionUnit {

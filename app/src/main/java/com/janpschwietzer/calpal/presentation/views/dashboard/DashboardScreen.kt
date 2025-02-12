@@ -24,7 +24,6 @@ import com.janpschwietzer.calpal.data.model.ChartModel
 import com.janpschwietzer.calpal.presentation.views.dashboard.components.MealListItem
 import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
 import com.janpschwietzer.calpal.presentation.views.dashboard.components.PieChart
-import com.janpschwietzer.calpal.presentation.views.product.add.AddEatenProductViewModel
 import com.janpschwietzer.calpal.ui.theme.CalPalTheme
 import com.janpschwietzer.calpal.util.enums.MealTime
 
@@ -57,7 +56,7 @@ fun DashboardScreen(navController: NavHostController) {
                 modifier = Modifier.padding(40.dp),
                 maxCalories = maxCalories?: 2000,
                 charts = listOf(
-                    ChartModel(value = eatenCalories?: 0, color = MaterialTheme.colorScheme.primary, description = stringResource(R.string.eaten))
+                    ChartModel(value = eatenCalories, color = MaterialTheme.colorScheme.primary, description = stringResource(R.string.eaten))
                 ),
                 size = 300.dp
             )

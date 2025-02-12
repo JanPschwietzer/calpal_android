@@ -1,18 +1,10 @@
 package com.janpschwietzer.calpal.presentation.views.product.search.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.data.model.ProductModel
@@ -41,7 +33,6 @@ private fun ProductItem(
     navController: NavHostController
 ) {
     ProductListItem(
-        navController = navController,
         product = product,
         onClick = {
             navController.navigate(Screen.AddProduct.createRoute(product.barcode.toString()))
