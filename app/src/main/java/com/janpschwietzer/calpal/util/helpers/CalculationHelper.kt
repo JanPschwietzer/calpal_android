@@ -8,9 +8,9 @@ object CalculationHelper {
     fun calculateCalories(eatenProduct: EatenProductModel, product: ProductModel?): Int {
         return when (eatenProduct.unit) {
             PortionUnit.METRICAL ->
-                eatenProduct.amount * (product?.kcal ?: 100) / 100
+                (eatenProduct.amount * (product?.kcal ?: 100) / 100).toInt()
             PortionUnit.PORTION ->
-                eatenProduct.amount * (product?.portionSize ?: 1) * (product?.kcal ?: 100) / 100
+                (eatenProduct.amount * (product?.portionSize ?: 1) * (product?.kcal ?: 100) / 100).toInt()
         }
     }
 }

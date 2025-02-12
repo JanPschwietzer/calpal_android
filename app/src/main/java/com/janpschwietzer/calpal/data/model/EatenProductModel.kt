@@ -9,7 +9,7 @@ data class EatenProductModel(
     val barcode: Long,
     val date: Long,
     val meal: MealTime,
-    val amount: Int,
+    val amount: Double,
     val unit: PortionUnit
 )
 
