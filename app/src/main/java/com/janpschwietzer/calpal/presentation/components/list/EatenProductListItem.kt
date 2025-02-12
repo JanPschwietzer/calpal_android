@@ -120,7 +120,7 @@ fun PreviewEatenProductListItem() {
                 id = null,
                 barcode = 1337,
                 meal = MealTime.SNACK,
-                amount = 13,
+                amount = 13.0,
                 date = LocalDateConverter.toTimestamp(LocalDate.now())!!,
                 unit = PortionUnit.METRICAL
             ),

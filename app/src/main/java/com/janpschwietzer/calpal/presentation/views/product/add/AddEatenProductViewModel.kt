@@ -34,14 +34,14 @@ class AddEatenProductViewModel @Inject constructor(
             barcode = 0,
             date = LocalDateConverter.toTimestamp(LocalDate.now()) ?: 0,
             meal = MealTime.BREAKFAST,
-            amount = 1,
+            amount = 1.0,
             unit = PortionUnit.PORTION
         )
     )
     val eatenProduct: StateFlow<EatenProductModel> = _eatenProduct
 
-    private val _amount = MutableStateFlow<Int?>(1)
-    val amount: StateFlow<Int?> = _amount
+    private val _amount = MutableStateFlow<String?>("1")
+    val amount: StateFlow<String?> = _amount
 
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -64,13 +64,13 @@ class AddEatenProductViewModel @Inject constructor(
     private fun setupEatenProductValues() {
         _eatenProduct.value = _eatenProduct.value.copy(
             barcode = product.value?.barcode ?: 0,
-            amount = _amount.value ?: 1
+            amount = _amount.value?.replace(",", ".")?.toDoubleOrNull() ?: 0.0
         )
     }
 
     fun setEatenProductAmount(amount: String) {
-        _amount.value = amount.toIntOrNull()
-        _eatenProduct.value = _eatenProduct.value.copy(amount = (amount.toIntOrNull() ?: 0))
+        _amount.value = amount
+        _eatenProduct.value = _eatenProduct.value.copy(amount = (amount.replace(",", ".").toDoubleOrNull() ?: 0.0))
     }
 
     fun setEatenProductMealTime(mealTime: MealTime) {

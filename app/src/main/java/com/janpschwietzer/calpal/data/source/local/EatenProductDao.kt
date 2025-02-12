@@ -16,7 +16,7 @@ data class EatenProductEntity(
     val barcode: Long,
     val dateEaten: Long,
     val meal: Int,
-    val amount: Int,
+    val amount: Double,
     val unit: Int,
 )
 

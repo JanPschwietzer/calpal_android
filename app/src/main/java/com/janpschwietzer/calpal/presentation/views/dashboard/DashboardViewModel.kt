@@ -9,6 +9,7 @@ import com.janpschwietzer.calpal.data.repository.ProductRepository
 import com.janpschwietzer.calpal.data.repository.UserRepository
 import com.janpschwietzer.calpal.util.enums.MealTime
 import com.janpschwietzer.calpal.util.enums.PortionUnit
+import com.janpschwietzer.calpal.util.helpers.CalculationHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -72,13 +73,8 @@ class DashboardViewModel @Inject constructor(
             _eatenProducts.value.forEach { value ->
                 val prod = productRepository.getProduct(value.barcode)
 
-                //TODO: Gegebenenfalls in einen Service etc auslagern, wird sicher öfter benötigt
                 if (prod?.kcal != null) {
-                    val amount = if (value.unit == PortionUnit.PORTION) {
-                        (prod.kcal.toFloat() / 100f) * (value.amount * (prod.portionSize ?: 1))
-                    } else {
-                        (prod.kcal.toFloat() / 100f) * value.amount
-                    }.toInt()
+                    val amount = CalculationHelper.calculateCalories(value, prod)
                     _eatenCalories.value += amount
 
                     if (_eatenMeals[value.meal]?.value == null) {
