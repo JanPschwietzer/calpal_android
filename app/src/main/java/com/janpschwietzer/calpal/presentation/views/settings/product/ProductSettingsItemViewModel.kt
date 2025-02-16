@@ -16,7 +16,7 @@ import javax.inject.Inject
 class ProductSettingsItemViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : ViewModel() {
-    private val _product = MutableStateFlow<ProductModel>(ProductModel(
+    private val _product = MutableStateFlow(ProductModel(
         barcode = 1337
     ))
     val product: StateFlow<ProductModel> = _product
