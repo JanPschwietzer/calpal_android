@@ -67,4 +67,5 @@
     <string name="product_settings">edit products</string>
     <string name="search">search</string>
     <string name="filter">filter</string>
+    <string name="product_name">product name</string>
 </resources>
