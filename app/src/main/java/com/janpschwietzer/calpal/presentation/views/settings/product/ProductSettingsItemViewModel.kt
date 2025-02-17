@@ -45,7 +45,7 @@ class ProductSettingsItemViewModel @Inject constructor(
     }
 
     fun updateCarbs(s: String) {
-        _product.value = _product.value.copy(carbs = s.toDoubleOrNull())
+        _product.value = _product.value.copy(carbs = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun updatePortionSize(s: String) {
@@ -53,23 +53,23 @@ class ProductSettingsItemViewModel @Inject constructor(
     }
 
     fun updateSugar(s: String) {
-        _product.value = _product.value.copy(sugar = s.toDoubleOrNull())
+        _product.value = _product.value.copy(sugar = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun updateFat(s: String) {
-        _product.value = _product.value.copy(fat = s.toDoubleOrNull())
+        _product.value = _product.value.copy(fat = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun updateSaturatedFat(s: String) {
-        _product.value = _product.value.copy(saturatedFat = s.toDoubleOrNull())
+        _product.value = _product.value.copy(saturatedFat = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun updateProtein(s: String) {
-        _product.value = _product.value.copy(protein = s.toDoubleOrNull())
+        _product.value = _product.value.copy(protein = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun updateFiber(s: String) {
-        _product.value = _product.value.copy(fiber = s.toDoubleOrNull())
+        _product.value = _product.value.copy(fiber = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun updatePortionUnit(s: String?) {
@@ -77,7 +77,7 @@ class ProductSettingsItemViewModel @Inject constructor(
     }
 
     fun updateSalt(s: String) {
-        _product.value = _product.value.copy(salt = s.toDoubleOrNull())
+        _product.value = _product.value.copy(salt = s.replace(",", ".").toDoubleOrNull())
     }
 
     fun saveProduct() {

@@ -6,6 +6,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.VisualTransformation
+import com.janpschwietzer.calpal.util.helpers.LocaleBasedVisualTransformation
 
 @Composable
 fun BasicInputField(
@@ -13,6 +15,7 @@ fun BasicInputField(
     value: String?,
     modifier: Modifier = Modifier,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    visualTransformation: VisualTransformation = LocaleBasedVisualTransformation(),
     onValueChange: (String) -> Unit
 ) {
     OutlinedTextField(
@@ -21,6 +24,7 @@ fun BasicInputField(
         label = { Text(label) },
         modifier = modifier.fillMaxWidth(),
         singleLine = true,
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
+        visualTransformation = visualTransformation
     )
 }
