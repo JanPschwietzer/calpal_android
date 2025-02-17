@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,6 +37,7 @@ fun UserSettingsScreen(
 ) {
     val user by viewModel.user.collectAsState()
     val kcalGoalEditable by viewModel.kcalGoalEditable.collectAsState()
+    val scrollState = rememberScrollState()
 
     CustomScaffold(
         title = stringResource(R.string.user_settings_title),
@@ -47,6 +50,7 @@ fun UserSettingsScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(8.dp)
+                .verticalScroll(scrollState)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
 
