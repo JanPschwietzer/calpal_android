@@ -43,6 +43,16 @@ fun ProductSettingsItemScreen(
     val product by viewModel.product.collectAsState()
     val scrollState = rememberScrollState()
 
+    val kcal by viewModel.kcal.collectAsState()
+    val protein by viewModel.protein.collectAsState()
+    val portionSize by viewModel.portionSize.collectAsState()
+    val carbs by viewModel.carbs.collectAsState()
+    val sugar by viewModel.sugar.collectAsState()
+    val fat by viewModel.fat.collectAsState()
+    val saturatedFat by viewModel.saturatedFat.collectAsState()
+    val salt by viewModel.salt.collectAsState()
+    val fiber by viewModel.fiber.collectAsState()
+
     LaunchedEffect(Unit) {
         viewModel.loadProduct(barcode)
     }
@@ -89,7 +99,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.kcal),
-                    value = product.kcal?.toString(),
+                    value = kcal,
                     onValueChange = viewModel::updateKcal
                 )
 
@@ -97,7 +107,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.protein),
-                    value = product.protein?.toString(),
+                    value = protein,
                     onValueChange = viewModel::updateProtein
                 )
             }
@@ -109,7 +119,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.portion_size),
-                    value = product.portionSize?.toString(),
+                    value = portionSize,
                     onValueChange = viewModel::updatePortionSize
                 )
 
@@ -129,7 +139,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.carbs),
-                    value = product.carbs?.toString(),
+                    value = carbs,
                     onValueChange = viewModel::updateCarbs
                 )
 
@@ -137,7 +147,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.sugar),
-                    value = product.sugar?.toString(),
+                    value = sugar,
                     onValueChange = viewModel::updateSugar
                 )
             }
@@ -149,7 +159,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.fat),
-                    value = product.fat?.toString(),
+                    value = fat,
                     onValueChange = viewModel::updateFat
                 )
 
@@ -157,7 +167,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.saturated),
-                    value = product.saturatedFat?.toString(),
+                    value = saturatedFat,
                     onValueChange = viewModel::updateSaturatedFat
                 )
             }
@@ -169,7 +179,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.salt),
-                    value = product.salt?.toString(),
+                    value = salt,
                     onValueChange = viewModel::updateSalt
                 )
 
@@ -177,7 +187,7 @@ fun ProductSettingsItemScreen(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = stringResource(R.string.fiber),
-                    value = product.fiber?.toString(),
+                    value = fiber,
                     onValueChange = viewModel::updateFiber
                 )
             }

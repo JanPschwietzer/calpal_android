@@ -113,7 +113,7 @@ fun AddEatenProductScreen(
                     ) {
                         BasicInputField(
                             label = viewModel.buildPortionUnitString(context = navController.context),
-                            value = amount?.toString(),
+                            value = amount,
                             modifier = Modifier.weight(1f).fillMaxWidth().padding(8.dp),
                             onValueChange = viewModel::setEatenProductAmount,
                             keyboardOptions = KeyboardOptions(
