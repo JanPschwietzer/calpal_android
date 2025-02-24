@@ -66,4 +66,16 @@
     <string name="product_settings">Produkte editieren</string>
     <string name="search">suchen</string>
     <string name="filter">filtern</string>
+    <string name="product_name">Produktname</string>
+    <string name="product_brand">Brand</string>
+    <string name="kcal">Kilokalorien</string>
+    <string name="carbs">Kohlenhydrate</string>
+    <string name="portion_size">Portionsgröße</string>
+    <string name="sugar">Zucker</string>
+    <string name="fat">Fett</string>
+    <string name="saturated">gesättigte Fettsäuren</string>
+    <string name="protein">Proteine</string>
+    <string name="fiber">Ballaststoffe</string>
+    <string name="salt">Salz</string>
+    <string name="portion_unit">Portionseinheit</string>
 </resources>

@@ -14,6 +14,6 @@ sealed class Screen(val route: String) {
     data object UserSettings: Screen("settings/user")
     data object ProductSettings: Screen("settings/product")
     data object ProductSettingsItem: Screen("settings/product/{barcode}") {
-        fun createRoute(barcode: String) = "add-product/$barcode" //TODO: change
+        fun createRoute(barcode: String) = "settings/product/$barcode"
     }
 }

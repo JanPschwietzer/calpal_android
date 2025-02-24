@@ -13,6 +13,7 @@ import com.janpschwietzer.calpal.presentation.views.details.DetailsScreen
 import com.janpschwietzer.calpal.presentation.views.overview.OverviewScreen
 import com.janpschwietzer.calpal.presentation.views.product.search.SearchProductScreen
 import com.janpschwietzer.calpal.presentation.views.settings.SettingsScreen
+import com.janpschwietzer.calpal.presentation.views.settings.product.ProductSettingsItemScreen
 import com.janpschwietzer.calpal.presentation.views.settings.product_list.ProductSettingsListScreen
 import com.janpschwietzer.calpal.presentation.views.settings.user.UserSettingsScreen
 import com.janpschwietzer.calpal.util.enums.MealTime
@@ -53,6 +54,18 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
         ) { backStackEntry ->
             val barcode = backStackEntry.arguments?.getString("barcode")
             AddEatenProductScreen(navController, barcode = URLDecoder.decode(barcode, "UTF-8"))
+        }
+
+        composable(
+            route = Screen.ProductSettingsItem.route,
+            arguments = listOf(navArgument("barcode") {
+                type = NavType.StringType
+                nullable = true
+                defaultValue = null
+            }),
+        ) { backStackEntry ->
+            val barcode = backStackEntry.arguments?.getString("barcode")
+            ProductSettingsItemScreen(navController, barcode = URLDecoder.decode(barcode, "UTF-8").toLongOrNull())
         }
 
         composable(Screen.SearchProduct.route) {
