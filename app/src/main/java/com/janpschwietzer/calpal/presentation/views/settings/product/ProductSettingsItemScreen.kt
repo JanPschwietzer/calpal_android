@@ -166,7 +166,7 @@ fun ProductSettingsItemScreen(
                 BasicInputField(
                     modifier = Modifier.weight(1f),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    label = stringResource(R.string.saturated),
+                    label = stringResource(R.string.saturated_fat),
                     value = saturatedFat,
                     onValueChange = viewModel::updateSaturatedFat
                 )

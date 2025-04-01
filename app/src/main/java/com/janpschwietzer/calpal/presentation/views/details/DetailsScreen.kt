@@ -18,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import com.janpschwietzer.calpal.R
 import com.janpschwietzer.calpal.presentation.components.list.EatenProductListItem
 import com.janpschwietzer.calpal.presentation.layout.CustomScaffold
+import com.janpschwietzer.calpal.presentation.navigation.Screen
 import com.janpschwietzer.calpal.util.enums.MealTime
 
 @Composable
@@ -38,7 +39,7 @@ fun DetailsScreen(
 
     CustomScaffold(
         navController = navController,
-        title = stringResource(R.string.product_settings),
+        title = mealTime?.getDisplayedString(context = navController.context) ?: "Details",
         showFab = false,
         showBottomBar = false,
         showCloseButton = true
@@ -53,7 +54,9 @@ fun DetailsScreen(
                     EatenProductListItem(
                         product,
                         products.find { it.barcode == product.barcode },
-                        onClick = {},
+                        onClick = {
+                            navController.navigate(Screen.EditEatenProduct.createRoute(product.id.toString()))
+                        },
                         onDelete = { viewModel.RemoveEatenItem(product) }
                     )
                 }
