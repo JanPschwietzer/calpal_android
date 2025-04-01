@@ -46,16 +46,10 @@ class EditEatenProductViewModel @Inject constructor(
             } else {
                 _eatenProduct.value = eatenProductRepository.getEatenProduct(id)
                 _product.value = productRepository.getProduct(_eatenProduct.value?.barcode ?: 0)
+                _amount.value = _eatenProduct.value?.amount.toString()
                 _isLoading.value = false
             }
         }
-    }
-
-    private fun setupEatenProductValues() {
-        _eatenProduct.value = _eatenProduct.value?.copy(
-            barcode = product.value?.barcode ?: 0,
-            amount = _amount.value?.replace(",", ".")?.toDoubleOrNull() ?: 0.0
-        )
     }
 
     fun setEatenProductAmount(amount: String) {
