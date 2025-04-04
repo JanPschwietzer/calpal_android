@@ -74,9 +74,17 @@
     <string name="portion_size">portion size</string>
     <string name="sugar">sugar</string>
     <string name="fat">fat</string>
-    <string name="saturated">saturated fats</string>
+    <string name="saturated_fat">saturated fats</string>
     <string name="protein">protein</string>
     <string name="fiber">fiber</string>
     <string name="salt">salt</string>
     <string name="portion_unit">portion unit</string>
+    <string name="no_product_found">No product was found</string>
+    <string name="product_information">Information</string>
+    <string name="brand">Brand</string>
+    <string name="nutrition_info">Nutrients</string>
+    <string name="calories">Calories</string>
+    <string name="portion_info">Portion info</string>
+    <string name="favorite_product">favorite</string>
+    <string name="scores">Scores</string>
 </resources>

@@ -13,7 +13,17 @@ data class EatenProductModel(
     val unit: PortionUnit
 )
 
-fun EatenProductModel.toEatenProductEntity(): EatenProductEntity {
+fun EatenProductModel.  toEatenProductEntity(): EatenProductEntity {
+    if (id != null) {
+        return EatenProductEntity(
+            id = id,
+            barcode = barcode,
+            dateEaten = date,
+            meal = meal.ordinal,
+            amount = amount,
+            unit = unit.ordinal
+        )
+    }
     return EatenProductEntity(
         barcode = barcode,
         dateEaten = date,
